@@ -54,9 +54,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         public void PrintBoard()
         {
             Coin m_CoinTemp;
+            Console.Write(" ");
+
             for (int columnIndex = 1; columnIndex < m_Columns + 1; columnIndex++)
             {
-                Console.Write(" " + columnIndex + " ");
+                Console.Write(" " + columnIndex + "  ");
             }
             Console.Write("\n");
 
@@ -64,13 +66,16 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             {
                 for (int column = 0; column < m_Columns; column++)
                 {
-                    if (GetBoardSpot == null)
+                    if (GetBoardSpot(row, column) == null)
                     {
-
+                        Console.Write("|   ");
                     }
-                    m_CoinTemp = GetBoardSpot(row, column);
-                    
-                    Console.Write("| " + GetBoardSpot(row, column) + " ");
+                    else
+                    {
+                        m_CoinTemp = GetBoardSpot(row, column);                
+                        Console.Write("| " + char.Parse(GetBoardSpot(row, column).Sign.ToString()) + " ");
+                    }
+                   
                 }
                 Console.Write("|\n");
                 for (int boundary = 0; boundary < m_Columns * 4; boundary++)
