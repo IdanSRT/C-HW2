@@ -61,11 +61,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         // Helper to read from the user the number of Players/Rows/Columns
         public static int ChooseNumOf(string numToChoose, int startRange, int endRange)
         {
-            System.Console.WriteLine("Please choose the number of " + numToChoose + ", between the range " + startRange + " to " + endRange + " (and then press 'enter' :");
+            System.Console.WriteLine("Please choose the number of " + numToChoose + ", between the range " + startRange + " to " + endRange + " (and then press 'enter'):");
             string inputNumStr = Console.ReadLine();
             int inputNumInt;
             bool goodInput = int.TryParse(inputNumStr, out inputNumInt);
-            while (!goodInput)
+            while (!goodInput && inputNumInt >= startRange && inputNumInt <= endRange)
             {
                 Console.WriteLine("Input is not valid. \nPlease choose a number between the range " + startRange + " to " + endRange +":");
                 inputNumStr = Console.ReadLine();

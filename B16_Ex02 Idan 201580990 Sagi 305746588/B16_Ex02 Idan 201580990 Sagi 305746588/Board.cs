@@ -34,19 +34,20 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         //get the state of the spot in the board
         public Coin GetBoardSpot(int i_Row, int i_Column)
         {
-            return m_Board[i_Row,i_Column];
+            return m_Board[i_Row, i_Column];
         }
 
         //print the board to the console
         public void PrintBoard()
         {
+            Console.Write(" ");
             for (int columnIndex = 1; columnIndex < m_Columns; columnIndex++)
             {
-                Console.Write("  " + columnIndex + "  ");
+                Console.Write(" " + columnIndex + " ");
             }
             Console.Write("\n");
 
-            for (int row = 0; row < m_Rows + 1; row++)
+            for (int row = 0; row < m_Rows ; row++)
             {
                 for (int column = 0; column < m_Columns; column++)
                 {
