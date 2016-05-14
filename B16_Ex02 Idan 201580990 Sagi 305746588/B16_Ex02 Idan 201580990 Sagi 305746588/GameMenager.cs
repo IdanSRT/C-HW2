@@ -23,8 +23,8 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             m_GameBoard = i_GameBoard;
             m_FirstPlayer = new Player(i_FirstPlayerName, false, (eSign) 1);
             m_SecondPlayer = new Player(i_SecondPlayerName, false, (eSign) 2);
-            m_RowRange = m_GameBoard.Row;
-            m_ColumnRange.Column;
+            m_RowRange = m_GameBoard.Rows;
+            m_ColumnRange = m_GameBoard.Columns;
         }
 
         // Constractor for one player
@@ -62,22 +62,26 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         {
             Player currentPlayer = m_FirstPlayer;
 
-            while (!m_GameBoard.IsEnded)
+            while (true)
             {
                 Console.WriteLine("Player " + currentPlayer.Name + ", Please choose column:");
                 String columnChooseStr = Console.ReadLine();
                 int columnChooseInt;
                 bool goodInput = int.TryParse(columnChooseStr, out columnChooseInt);
+
                 while (!goodInput || columnChooseInt > m_ColumnRange || columnChooseInt < 0){
                     if (m_GameBoard.IsColumnFull(columnChooseInt))
                     {
-                        Console.WriteLine("Column " + columnChooseInt + "is full.\nPlease choose a different column:")
+                        Console.WriteLine("Column " + columnChooseInt + "is full.\nPlease choose a different column:");
                     }
                     else{
                         Console.WriteLine("Input is not valid. \nPlease choose a column:");
 
                     }
+                    columnChooseStr = Console.ReadLine();
+                    goodInput = int.TryParse(columnChooseStr, out columnChooseInt);
                 }
+
                 SeitchPlayer(currentPlayer);
 
             }

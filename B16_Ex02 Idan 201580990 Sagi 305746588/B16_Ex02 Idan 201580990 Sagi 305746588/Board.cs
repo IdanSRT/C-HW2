@@ -15,13 +15,26 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         int m_Rows;
         int m_Columns;
 
-
         //new board with the input size
         public Board(int i_Rows, int i_Columns)
         {
             m_Board = new Coin[i_Rows, i_Columns];
             m_Rows = i_Rows;
             m_Columns = i_Columns;
+        }
+
+        // Rows setter and getter 
+        public int Rows
+        {
+            set { m_Rows = value; }
+            get { return m_Rows; }
+        }
+
+        // Columns setter and getter 
+        public int Columns
+        {
+            set { m_Columns = value; }
+            get { return m_Columns; }
         }
 
         //set the spot in the board 
