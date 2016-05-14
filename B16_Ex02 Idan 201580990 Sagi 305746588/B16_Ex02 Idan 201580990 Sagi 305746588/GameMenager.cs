@@ -7,7 +7,7 @@ using B16_Ex02_Idan_201580990_Sagi_305746588;
 
 namespace B16_Ex02_Idan_201580990_Sagi_305746588
 {
-    class GameMenager
+    public class GameMenager
     {
         Board m_GameBoard;
         int m_RowRange;
@@ -16,11 +16,10 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         Player m_SecondPlayer;
         bool m_IsEnded;
 
-
-     
         // Constractor for two players
         public GameMenager(Board i_GameBoard, String i_FirstPlayerName, String i_SecondPlayerName)
         {
+
             m_GameBoard = i_GameBoard;
             m_FirstPlayer = new Player(i_FirstPlayerName, false, (eSign) 1);
             m_SecondPlayer = new Player(i_SecondPlayerName, false, (eSign) 2);
@@ -30,7 +29,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         }
 
         // Constractor for one player
-        public GameMenager(Board i_GameBoard, String i_FirstPlayerName)
+        public GameMenager(Board i_GameBoard, string i_FirstPlayerName)
             : this(i_GameBoard, i_FirstPlayerName, "Computer")
         {
         }
@@ -38,8 +37,8 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         // Board getter and setter
         public Board GameBoard
         {
+            get { return m_GameBoard; }            
             set { m_GameBoard = value; }
-            get { return m_GameBoard; }
         }
 
         // Start a new game
@@ -75,19 +74,21 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             while (!this.IsEnded)
             {
                 Console.WriteLine("Player " + currentPlayer.Name + ", Please choose column:");
-                String columnChooseStr = Console.ReadLine();
+                string columnChooseStr = Console.ReadLine();
                 int columnChooseInt;
                 bool goodInput = int.TryParse(columnChooseStr, out columnChooseInt);
 
-                while (!goodInput || columnChooseInt > m_ColumnRange || columnChooseInt < 1){
+                while (!goodInput || columnChooseInt > m_ColumnRange || columnChooseInt < 1)
+                {
                     if (m_GameBoard.IsColumnFull(columnChooseInt))
                     {
                         Console.WriteLine("Column " + columnChooseInt + "is full.\nPlease choose a different column:");
                     }
-                    else{
+                    else
+                    {
                         Console.WriteLine("Input is not valid. \nPlease choose a column:");
-
                     }
+
                     columnChooseStr = Console.ReadLine();
                     goodInput = int.TryParse(columnChooseStr, out columnChooseInt);
                 }
@@ -102,6 +103,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     Console.WriteLine("Congratulations!/nPlayer" + currentPlayer + "wins!");
                     break;
                 }
+
                 //else if (m_GameBoard.IsFull())
                 //{
                 //    Console.WriteLine("This is a tie!");
@@ -122,8 +124,8 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             {
                 io_CurrentPlayer = m_FirstPlayer;
             }
-
         }
+
         // Helper to read from the user the number of Players/Rows/Columns
         public static int ChooseNumOf(string numToChoose, int startRange, int endRange)
         {

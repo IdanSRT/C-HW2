@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +53,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         //print the board to the console
         public void PrintBoard()
         {
+            for (int columnIndex = 1; columnIndex < m_Columns; columnIndex++)
             Coin m_CoinTemp;
             Console.Write(" ");
 
@@ -61,6 +61,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             {
                 Console.Write(" " + columnIndex + "  ");
             }
+
             Console.Write("\n");
 
             for (int row = 0; row < m_Rows ; row++)
@@ -76,13 +77,13 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                         m_CoinTemp = GetBoardSpot(row, column);                
                         Console.Write("| " + char.Parse(GetBoardSpot(row, column).Sign.ToString()) + " ");
                     }
-                   
                 }
                 Console.Write("|\n");
                 for (int boundary = 0; boundary < m_Columns * 4; boundary++)
                 {
                     Console.Write("=");
                 }
+
                 Console.Write("\n");
             }
         }
@@ -94,6 +95,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             {
                 return false;
             }
+
             return true;
         }
 
@@ -111,9 +113,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                 {
                     Coin m_Coin = new Coin(i_Player.Sign, rowInColumn, i_Column);
                     SetBoardSpot(rowInColumn, i_Column, m_Coin);
+
                     return m_Coin;
                 }
             }
+
             return null;
         }
 
@@ -132,7 +136,6 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return false;
         }
 
-        //check if bingo in a row
         public bool IsBingoRow(Coin i_Coin)
         {
             int m_IndexRow = i_Coin.m_CoinRow;
@@ -155,6 +158,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     break;
                 }
             }
+
             for (int stepLeft = 0; stepLeft < 3; stepLeft++)
             {
                 if (GetBoardSpot(m_CounterInRow, m_IndexColumn - stepLeft).Sign == m_CoinSign)
@@ -173,7 +177,6 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return false;
         }
 
-        //check if bingo in a column
         public bool IsBingoColumn(Coin i_Coin)
         {
             int m_IndexRow = i_Coin.m_CoinRow;
@@ -210,7 +213,6 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return false;
         }
 
-        // check if bingo in a diagonal /
         public bool IsBingoDiagonalA(Coin i_Coin)
         {
             int m_IndexRow = i_Coin.m_CoinRow;
@@ -247,7 +249,6 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return false;
         }
 
-        //cheick if bingo in a diagonal \
         public bool IsBingoDiagonalB(Coin i_Coin)
         {
             int m_IndexRow = i_Coin.m_CoinRow;
@@ -286,4 +287,3 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
 
     }
 }
-
