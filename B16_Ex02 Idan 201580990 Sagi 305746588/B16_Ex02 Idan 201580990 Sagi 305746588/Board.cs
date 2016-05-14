@@ -28,17 +28,17 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             m_Columns = i_Columns;
         }
 
-        public void setBoardSpot(int i_Row, int i_Column, char i_value)
+        public void SetBoardSpot(int i_Row, int i_Column, char i_value)
         {
             m_Board[i_Row, i_Column] = i_value;
         }
 
-        public char getBoardSpot(int i_Row, int i_Column)
+        public Coin GetBoardSpot(int i_Row, int i_Column)
         {
             return m_Board[i_Row, i_Column];
         }
 
-        public void printBoard()
+        public void PrintBoard()
         {
             for (int columnIndex = 1; columnIndex < m_Columns; columnIndex++)
             {
@@ -49,7 +49,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             {
                 for (int column = 0; column < m_Columns; column++)
                 {
-                    Console.Write("| " + getBoardSpot(row, column) + " ");
+                    Console.Write("| " + GetBoardSpot(row, column) + " ");
                 }
                 Console.Write("|\n");
                 for (int boundary = 0; boundary < m_Columns * 4; boundary++)
@@ -60,24 +60,24 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             }
         }
 
-        public bool isColumnFull(int i_Row)
+        public bool IsColumnFull(int i_Row)
         {
-            if (getBoardSpot(i_Row - 1,0) == null)
+            if (GetBoardSpot(i_Row - 1,0) == null)
             {
                 return false;
             }
             return true;
         }
         
-        public bool insertCoin(int i_Column)
+        public bool InsertCoin(int i_Column, Coin i_Coin)
         {
-            if (isColumnFull(i_Column) == true)
+            if (IsColumnFull(i_Column) == true)
             {
                 return false;
             }
             for (int rowInColumn = m_Rows; rowInColumn > 1; rowInColumn--)
             {
-                if (getBoardSpot(rowInColumn , i_Column) == null)
+                if (GetBoardSpot(rowInColumn , i_Column) == null)
                 {
                     
                 }
