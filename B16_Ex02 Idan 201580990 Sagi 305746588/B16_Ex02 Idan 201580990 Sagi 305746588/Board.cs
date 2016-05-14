@@ -53,7 +53,8 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         //print the board to the console
         public void PrintBoard()
         {
-            for (int columnIndex = 1; columnIndex < m_Columns; columnIndex++)
+            Coin m_CoinTemp;
+            for (int columnIndex = 1; columnIndex < m_Columns + 1; columnIndex++)
             {
                 Console.Write(" " + columnIndex + " ");
             }
@@ -63,6 +64,12 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             {
                 for (int column = 0; column < m_Columns; column++)
                 {
+                    if (GetBoardSpot == null)
+                    {
+
+                    }
+                    m_CoinTemp = GetBoardSpot(row, column);
+                    
                     Console.Write("| " + GetBoardSpot(row, column) + " ");
                 }
                 Console.Write("|\n");
@@ -85,11 +92,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         }
 
         //insert a coin in the column or return false if full
-        public bool InsertCoin(int i_Column, Player i_Player)
+        public Coin InsertCoin(int i_Column, Player i_Player)
         {
             if (IsColumnFull(i_Column) == true)
             {
-                return false;
+                return null;
             }
 
             for (int rowInColumn = m_Rows; rowInColumn > 1; rowInColumn--)
@@ -98,9 +105,10 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                 {
                     Coin m_Coin = new Coin(i_Player.Sign, rowInColumn, i_Column);
                     SetBoardSpot(rowInColumn, i_Column, m_Coin);
+                    return m_Coin;
                 }
             }
-            return true;
+            return null;
         }
 
         //check if there is a 4 in a row
@@ -118,6 +126,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return false;
         }
 
+        //check if bingo in a row
         public bool IsBingoRow(Coin i_Coin)
         {
             int m_IndexRow = i_Coin.m_CoinRow;
@@ -154,6 +163,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return false;
         }
 
+        //check if bingo in a column
         public bool IsBingoColumn(Coin i_Coin)
         {
             int m_IndexRow = i_Coin.m_CoinRow;
@@ -190,6 +200,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return false;
         }
 
+        // check if bingo in a diagonal /
         public bool IsBingoDiagonalA(Coin i_Coin)
         {
             int m_IndexRow = i_Coin.m_CoinRow;
@@ -226,6 +237,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return false;
         }
 
+        //cheick if bingo in a diagonal \
         public bool IsBingoDiagonalB(Coin i_Coin)
         {
             int m_IndexRow = i_Coin.m_CoinRow;
