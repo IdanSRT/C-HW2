@@ -10,9 +10,9 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
 
     class Coin
     {
-        private eSign m_Sign;
-        private int m_CoinRow;
-        private int m_CoinColumn;
+        public eSign m_Sign;
+        public int m_CoinRow;
+        public  int m_CoinColumn;
 
         public Coin(eSign i_Sign, int i_Row, int i_Column)
         {

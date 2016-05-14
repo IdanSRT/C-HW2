@@ -26,6 +26,20 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
            new GameMenager(i_GameBoard, i_FirstPlayerName, "Computer");
         }
 
+        public static GameMenager StartNewGame(int i_Rows, int i_Columns, int i_NumOfPlayers) 
+        {
+            Board GameBoard = new Board(i_Rows, i_Columns);
+            GameMenager GameManager; 
+            if (i_NumOfPlayers == 1)
+            {
+            GameManager = new GameMenager(GameBoard, "Player 1");
+            }
+            else
+            {
+                GameManager = new GameMenager(GameBoard, "Player 1", "Player 2");
+            }
 
+            return GameManager;
+        }
     }
 }
