@@ -1,9 +1,8 @@
 diff a/B16_Ex02 Idan 201580990 Sagi 305746588/B16_Ex02 Idan 201580990 Sagi 305746588/Board.cs b/B16_Ex02 Idan 201580990 Sagi 305746588/B16_Ex02 Idan 201580990 Sagi 305746588/Board.cs	(rejected hunks)
-@@ -53,7 +53,6 @@
-         //print the board to the console
-         public void PrintBoard()
-         {
--            for (int columnIndex = 1; columnIndex < m_Columns; columnIndex++)
-             Coin m_CoinTemp;
-             for (int columnIndex = 1; columnIndex < m_Columns + 1; columnIndex++)
-             {
+@@ -1,5 +0,4 @@
+-﻿
+-using System.Collections.Generic;
++﻿using System.Collections.Generic;
+ using System.Linq;
+ using System.Text;
+ using System.Threading.Tasks;
