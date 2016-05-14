@@ -14,6 +14,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         Coin[,] m_Board;
         int m_Rows;
         int m_Columns;
+        int m_CoinCounter;
 
         //new board with the input size
         public Board(int i_Rows, int i_Columns)
@@ -141,7 +142,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
 
             for (int stepRight = 0; stepRight < 3; stepRight++)
             {
-                if (GetBoardSpot(m_CounterInRow, m_IndexColumn + stepRight).Sign == m_CoinSign)
+                if (GetBoardSpot(m_CounterInRow, m_IndexColumn + stepRight) == null)
+                {
+                    continue;
+                }
+                else if (GetBoardSpot(m_CounterInRow, m_IndexColumn + stepRight).Sign == m_CoinSign)
                 {
                     m_CounterInRow++;
                 }
