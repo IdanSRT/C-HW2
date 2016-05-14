@@ -95,33 +95,56 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         //check if there is a 4 in a row
         public bool IsBingo(Coin i_Coin)
         {
-            //int m_IndexRow = i_Coin.m_CoinRow;
-          //  int i_IndexRow ,int i_IndexColumn = i_Coin.m_CoinColumn;
-          
-            
-            return true;
-        }
-
-        public bool IsBingoRow(int i_IndexRow, int i_IndexColumn)
-        {
-            int m_CounterInRow = 0;
+          int m_IndexRow = i_Coin.m_CoinRow;
+          int m_IndexColumn = i_Coin.m_CoinColumn;
+            if( IsBingoRow(i_Coin) 
+                || IsBingoColumn(i_Coin) 
+                || IsBingoDiagonalA(i_Coin) 
+                || IsBingoDiagonalB(i_Coin))
+            {
+                return true;
+            }    
             return false;
         }
 
-        public bool IsBingoColumn(int i_IndexRow, int i_IndexColumn)
+        public bool IsBingoRow(Coin i_Coin)
         {
+            int m_IndexRow = i_Coin.m_CoinRow;
+            int m_IndexColumn = i_Coin.m_CoinColumn;
+            eSign m_CoinSign = i_Coin.m_Sign;
+            int m_CounterInRow = 0;
+
+            for (int step = 0; step < 3; step++)
+            {
+                if (GetBoardSpot(m_CounterInRow + step, m_IndexColumn).m_Sign == m_CoinSign)
+                {
+
+                }
+            }
+
+            return false;
+        }
+
+        public bool IsBingoColumn(Coin i_Coin)
+        {
+            int m_IndexRow = i_Coin.m_CoinRow;
+            int m_IndexColumn = i_Coin.m_CoinColumn;
             int m_CounterInColumn = 0;
             return false;
         }
 
-        public bool IsBingoDiagonalA(int i_IndexRow, int i_IndexColumn)
+        public bool IsBingoDiagonalA(Coin i_Coin)
         {
+            int m_IndexRow = i_Coin.m_CoinRow;
+            int m_IndexColumn = i_Coin.m_CoinColumn;
             int m_CounterDiagonalA = 0;
             return false;
         }
 
-        public bool IsBingoDiagonalB(int i_IndexRow, int i_IndexColumn)
+        public bool IsBingoDiagonalB(Coin i_Coin)
         {
+            int m_IndexRow = i_Coin.m_CoinRow;
+            int m_IndexColumn = i_Coin.m_CoinColumn;
             int m_CounterDiagonalB = 0;
             return false;
         }
