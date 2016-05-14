@@ -44,6 +44,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             {
                 Console.Write("  " + columnIndex + "  ");
             }
+            Console.Write("\n");
 
             for (int row = 0; row < m_Rows + 1; row++)
             {
