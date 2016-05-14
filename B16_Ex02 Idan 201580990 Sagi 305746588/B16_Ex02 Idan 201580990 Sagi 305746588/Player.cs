@@ -12,7 +12,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         X
     }
 
-    class Player
+    public class Player
     {
         eSign m_PlayerSign;
         bool m_IsPC;
