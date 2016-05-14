@@ -27,17 +27,20 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             m_Rows = i_Rows;
             m_Columns = i_Columns;
         }
-
-        public void SetBoardSpot(int i_Row, int i_Column, char i_value)
+        
+        //set the spot in the board 
+        public void SetBoardSpot(int i_Row, int i_Column, Coin i_Coin)
         {
-            m_Board[i_Row, i_Column] = i_value;
+            m_Board[i_Row][i_Column] = i_Coin;
         }
-
+        
+        //get the state of the spot in the board
         public Coin GetBoardSpot(int i_Row, int i_Column)
         {
             return m_Board[i_Row, i_Column];
         }
 
+        //print the board to the console
         public void PrintBoard()
         {
             for (int columnIndex = 1; columnIndex < m_Columns; columnIndex++)
@@ -60,6 +63,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             }
         }
 
+        //check in the column is full
         public bool IsColumnFull(int i_Row)
         {
             if (GetBoardSpot(i_Row - 1,0) == null)
@@ -69,7 +73,8 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return true;
         }
         
-        public bool InsertCoin(int i_Column, Player i_player)
+        //insert a coin in the column or return false if full
+        public bool InsertCoin(int i_Column, Player i_Player)
         {
             if (IsColumnFull(i_Column) == true)
             {
@@ -80,11 +85,45 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             {
                 if (GetBoardSpot(rowInColumn , i_Column) == null)
                 {
-                    Coin m_coin = new Coin(eSign Player.m_PlayerSign, int i_Row, int i_Column);
-                    SetBoardSpot(rowInColumn, i_Column, m_coin);
+                    Coin m_Coin = new Coin(i_Player.Sign, rowInColumn, i_Column);
+                    SetBoardSpot(rowInColumn, i_Column, m_Coin);
                 }
             }
             return true;
+        }
+       
+        //check if there is a 4 in a row
+        public bool IsBingo(Coin i_Coin)
+        {
+            //int m_IndexRow = i_Coin.m_CoinRow;
+          //  int i_IndexRow ,int i_IndexColumn = i_Coin.m_CoinColumn;
+          
+            
+            return true;
+        }
+
+        public bool IsBingoRow(int i_IndexRow, int i_IndexColumn)
+        {
+            int m_CounterInRow = 0;
+            return false;
+        }
+
+        public bool IsBingoColumn(int i_IndexRow, int i_IndexColumn)
+        {
+            int m_CounterInColumn = 0;
+            return false;
+        }
+
+        public bool IsBingoDiagonalA(int i_IndexRow, int i_IndexColumn)
+        {
+            int m_CounterDiagonalA = 0;
+            return false;
+        }
+
+        public bool IsBingoDiagonalB(int i_IndexRow, int i_IndexColumn)
+        {
+            int m_CounterDiagonalB = 0;
+            return false;
         }
     }
 }
