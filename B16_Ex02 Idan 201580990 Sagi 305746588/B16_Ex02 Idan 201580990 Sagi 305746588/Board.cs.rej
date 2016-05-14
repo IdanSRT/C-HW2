@@ -1,0 +1,10 @@
+diff a/B16_Ex02 Idan 201580990 Sagi 305746588/B16_Ex02 Idan 201580990 Sagi 305746588/Board.cs b/B16_Ex02 Idan 201580990 Sagi 305746588/B16_Ex02 Idan 201580990 Sagi 305746588/Board.cs	(rejected hunks)
+@@ -30,7 +30,7 @@
+ 
+         public void SetBoardSpot(int i_Row, int i_Column, char i_value)
+         {
+-            m_Board[i_Row, i_Column] = i_value;
++            m_Board[i_Row][i_Column] = i_value;
+         }
+ 
+         public Coin GetBoardSpot(int i_Row, int i_Column)

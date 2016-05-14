@@ -21,6 +21,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             m_Sign = i_Sign;
         }
 
+        public eSign Sign
+        {
+            set { m_Sign = value; }
+            get { return m_Sign; }
+        }
         public override string ToString()
         {
             
