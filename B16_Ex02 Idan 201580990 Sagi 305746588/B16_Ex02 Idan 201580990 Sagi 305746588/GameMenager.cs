@@ -10,8 +10,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
     class GameMenager
     {
         Board m_GameBoard;
+        int m_RowRange;
+        int m_ColumnRange;
         Player m_FirstPlayer;
         Player m_SecondPlayer;
+
 
      
         // Constractor for two players
@@ -20,6 +23,8 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             m_GameBoard = i_GameBoard;
             m_FirstPlayer = new Player(i_FirstPlayerName, false, (eSign) 1);
             m_SecondPlayer = new Player(i_SecondPlayerName, false, (eSign) 2);
+            m_RowRange = m_GameBoard.Row;
+            m_ColumnRange.Column;
         }
 
         // Constractor for one player
@@ -55,9 +60,41 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
 
         public void PlayGame()
         {
+            Player currentPlayer = m_FirstPlayer;
 
+            while (!m_GameBoard.IsEnded)
+            {
+                Console.WriteLine("Player " + currentPlayer.Name + ", Please choose column:");
+                String columnChooseStr = Console.ReadLine();
+                int columnChooseInt;
+                bool goodInput = int.TryParse(columnChooseStr, out columnChooseInt);
+                while (!goodInput || columnChooseInt > m_ColumnRange || columnChooseInt < 0){
+                    if (m_GameBoard.IsColumnFull(columnChooseInt))
+                    {
+                        Console.WriteLine("Column " + columnChooseInt + "is full.\nPlease choose a different column:")
+                    }
+                    else{
+                        Console.WriteLine("Input is not valid. \nPlease choose a column:");
+
+                    }
+                }
+                SeitchPlayer(currentPlayer);
+
+            }
         }
 
+        public void SeitchPlayer(Player io_CurrentPlayer)
+        {
+            if (io_CurrentPlayer == m_FirstPlayer)
+            {
+                io_CurrentPlayer = m_SecondPlayer;
+            }
+            else
+            {
+                io_CurrentPlayer = m_FirstPlayer;
+            }
+
+        }
         // Helper to read from the user the number of Players/Rows/Columns
         public static int ChooseNumOf(string numToChoose, int startRange, int endRange)
         {
@@ -65,7 +102,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             string inputNumStr = Console.ReadLine();
             int inputNumInt;
             bool goodInput = int.TryParse(inputNumStr, out inputNumInt);
-            while (!goodInput && inputNumInt >= startRange && inputNumInt <= endRange)
+            while (!goodInput || inputNumInt < startRange || inputNumInt > endRange)
             {
                 Console.WriteLine("Input is not valid. \nPlease choose a number between the range " + startRange + " to " + endRange +":");
                 inputNumStr = Console.ReadLine();

@@ -16,6 +16,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         int m_Columns;
 
 
+
         //new board with the input size
         public Board(int i_Rows, int i_Columns)
         {
@@ -40,7 +41,6 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         //print the board to the console
         public void PrintBoard()
         {
-            Console.Write(" ");
             for (int columnIndex = 1; columnIndex < m_Columns; columnIndex++)
             {
                 Console.Write(" " + columnIndex + " ");
