@@ -1,13 +1,9 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace B16_Ex02_Idan_201580990_Sagi_305746588
@@ -15,7 +11,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
     class Board
     {
         //board fields 
-        List<List<Coin>> m_Board;
+        Coin[,] m_Board;
         int m_Rows;
         int m_Columns;
       
@@ -23,7 +19,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         //new board with the input size
         public Board(int i_Rows, int i_Columns)
         {
-            m_Board = new List<List<Coin>>[i_Rows, i_Columns];
+            m_Board = new Coin[i_Rows, i_Columns];
             m_Rows = i_Rows;
             m_Columns = i_Columns;
         }
@@ -31,14 +27,14 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         //set the spot in the board 
         public void SetBoardSpot(int i_Row, int i_Column, Coin i_Coin)
         {
-            m_Board[i_Row][i_Column] = i_Coin;
+            m_Board[i_Row,i_Column] = i_Coin;
 
         }
         
         //get the state of the spot in the board
         public Coin GetBoardSpot(int i_Row, int i_Column)
         {
-            return m_Board[i_Row, i_Column];
+            return m_Board[i_Row,i_Column];
         }
 
         //print the board to the console
