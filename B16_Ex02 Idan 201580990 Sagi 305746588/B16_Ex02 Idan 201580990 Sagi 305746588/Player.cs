@@ -24,10 +24,17 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             m_IsPC = i_IsPC;
             m_Name = i_Name;   
         }
+
         public string Name
         {
             get { return m_Name; }
             set { m_Name = value; }
+        }
+
+        public eSign Sign
+        {
+            set { m_PlayerSign = value; }
+            get { return m_PlayerSign; }
         }
         
     }
