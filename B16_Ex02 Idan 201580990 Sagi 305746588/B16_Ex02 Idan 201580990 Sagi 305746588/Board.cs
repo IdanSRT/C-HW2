@@ -69,19 +69,22 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return true;
         }
         
-        public bool InsertCoin(int i_Column, Coin i_Coin)
+        public bool InsertCoin(int i_Column, Player i_player)
         {
             if (IsColumnFull(i_Column) == true)
             {
                 return false;
             }
+
             for (int rowInColumn = m_Rows; rowInColumn > 1; rowInColumn--)
             {
                 if (GetBoardSpot(rowInColumn , i_Column) == null)
                 {
-                    
+                    Coin m_coin = new Coin(eSign Player.m_PlayerSign, int i_Row, int i_Column);
+                    SetBoardSpot(rowInColumn, i_Column, m_coin);
                 }
             }
+            return true;
         }
     }
 }
