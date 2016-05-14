@@ -104,7 +104,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                 return null;
             }
 
-            for (int rowInColumn = m_Rows; rowInColumn > 1; rowInColumn--)
+            for (int rowInColumn = m_Rows - 1; rowInColumn >= 0; rowInColumn--)
             {
                 if (GetBoardSpot(rowInColumn, i_Column) == null)
                 {
