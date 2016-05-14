@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using B16_Ex02_Idan_201580990_Sagi_305746588;
 
 namespace B16_Ex02_Idan_201580990_Sagi_305746588
 {
@@ -27,7 +28,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
            new GameMenager(i_GameBoard, i_FirstPlayerName, "Computer");
         }
 
-        // 
+        // Start a new game
         public static GameMenager StartNewGame(int i_Rows, int i_Columns, int i_NumOfPlayers) 
         {
             Board GameBoard = new Board(i_Rows, i_Columns);
@@ -44,6 +45,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return GameManager;
         }
 
+        public void PlayGame();
 
         // Helper to read from the user the number of Players/Rows/Columns
         public static int ChooseNumOf(string numToChoose, int startRange, int endRange)
