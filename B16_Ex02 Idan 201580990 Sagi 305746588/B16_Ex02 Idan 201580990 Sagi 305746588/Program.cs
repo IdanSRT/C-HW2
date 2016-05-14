@@ -5,23 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using Ex02.ConsoleUtils;
 
+
 namespace B16_Ex02_Idan_201580990_Sagi_305746588
 {
     class Program
     {
-        public static void main()
+        public static void Main()
         {
-            int m_Rows;
-            int m_Columns;
-
-            Screen.Clear();
            
-            Console.WriteLine("4 in a row \n New game, pick board size from 4X4 to 8X8. \n number of rows:");
-            m_Rows = int.Parse(Console.ReadLine());
-            Console.WriteLine("n number of Columns:");
-            m_Columns = int.Parse(Console.ReadLine());
-            BoardContract gameboard = new BoardContract(m_Rows, m_Columns);
-            
+            Console.WriteLine("Hello!\n Let's play 4 in a row!");
+            int numOfPlayers = GameMenager.ChooseNumOf("Players", 1, 2);
+            int numOfRows = GameMenager.ChooseNumOf("Rows", 4, 8);
+            int numOfColumns = GameMenager.ChooseNumOf("Columns", 4, 8);
+            GameMenager Game = GameMenager.StartNewGame(numOfRows, numOfColumns, numOfPlayers);
+
+            Console.ReadLine();
+          
             
 
 
