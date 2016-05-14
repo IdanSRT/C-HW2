@@ -36,6 +36,12 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             set { m_PlayerSign = value; }
             get { return m_PlayerSign; }
         }
+
+        public bool IsPC
+        {
+            get { return m_IsPC; }
+            set { m_IsPC = value; }
+        }
         
     }
 }

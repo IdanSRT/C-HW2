@@ -16,7 +16,9 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             int numOfPlayers = GameMenager.ChooseNumOf("Players", 1, 2);
             int numOfRows = GameMenager.ChooseNumOf("Rows", 4, 8);
             int numOfColumns = GameMenager.ChooseNumOf("Columns", 4, 8);
-            GameMenager Game = GameMenager.StartNewGame(numOfRows, numOfColumns, numOfPlayers);
+            GameMenager NewGame = GameMenager.StartNewGame(numOfRows, numOfColumns, numOfPlayers);
+            
+            NewGame.GameBoard.PrintBoard();
 
             Console.ReadLine();
           

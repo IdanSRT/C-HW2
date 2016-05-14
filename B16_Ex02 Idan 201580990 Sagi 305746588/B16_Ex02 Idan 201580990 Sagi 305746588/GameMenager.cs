@@ -28,6 +28,12 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         {
         }
         
+        // Board getter and setter
+        public Board GameBoard
+        {
+            set { m_GameBoard = value; }
+            get { return m_GameBoard; }
+        }
 
         // Start a new game
         public static GameMenager StartNewGame(int i_Rows, int i_Columns, int i_NumOfPlayers) 
@@ -37,7 +43,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             if (i_NumOfPlayers == 1)
             {
                 GameManager = new GameMenager(GameBoard, "Player 1");
-                
+                GameManager.m_SecondPlayer.IsPC = true;
             }
             else
             {
