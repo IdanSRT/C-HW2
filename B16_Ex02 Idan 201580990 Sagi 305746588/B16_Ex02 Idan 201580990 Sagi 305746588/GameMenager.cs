@@ -14,6 +14,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         int m_ColumnRange;
         Player m_FirstPlayer;
         Player m_SecondPlayer;
+        bool m_IsEnded;
 
 
      
@@ -25,6 +26,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             m_SecondPlayer = new Player(i_SecondPlayerName, false, (eSign) 2);
             m_RowRange = m_GameBoard.Rows;
             m_ColumnRange = m_GameBoard.Columns;
+            m_IsEnded = false;
         }
 
         // Constractor for one player
@@ -58,18 +60,26 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return GameManager;
         }
 
+        // IsEnded get and set
+        public bool IsEnded
+        {
+            get { return m_IsEnded; }
+            set { m_IsEnded = value; }
+        }
+
+        // Play the Game
         public void PlayGame()
         {
             Player currentPlayer = m_FirstPlayer;
-
-            while (true)
+            m_GameBoard.PrintBoard();
+            while (!this.IsEnded)
             {
                 Console.WriteLine("Player " + currentPlayer.Name + ", Please choose column:");
                 String columnChooseStr = Console.ReadLine();
                 int columnChooseInt;
                 bool goodInput = int.TryParse(columnChooseStr, out columnChooseInt);
 
-                while (!goodInput || columnChooseInt > m_ColumnRange || columnChooseInt < 0){
+                while (!goodInput || columnChooseInt > m_ColumnRange || columnChooseInt < 1){
                     if (m_GameBoard.IsColumnFull(columnChooseInt))
                     {
                         Console.WriteLine("Column " + columnChooseInt + "is full.\nPlease choose a different column:");
@@ -82,8 +92,23 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     goodInput = int.TryParse(columnChooseStr, out columnChooseInt);
                 }
 
-                SeitchPlayer(currentPlayer);
+                Coin lastCoinInserted = m_GameBoard.InsertCoin(columnChooseInt - 1, currentPlayer);
+                Ex02.ConsoleUtils.Screen.Clear();
+                m_GameBoard.PrintBoard();
+                this.IsEnded = m_GameBoard.IsBingo(lastCoinInserted);
 
+                if (this.IsEnded)
+                {
+                    Console.WriteLine("Congratulations!/nPlayer" + currentPlayer + "wins!");
+                    break;
+                }
+                //else if (m_GameBoard.IsFull())
+                //{
+                //    Console.WriteLine("This is a tie!");
+                //}
+
+                // Switching the players
+                SeitchPlayer(currentPlayer);
             }
         }
 
