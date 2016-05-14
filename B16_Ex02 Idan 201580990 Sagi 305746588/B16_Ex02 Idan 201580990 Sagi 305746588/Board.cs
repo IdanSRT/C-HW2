@@ -157,7 +157,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             }
             for (int stepLeft = 0; stepLeft < 3; stepLeft++)
             {
-                if (GetBoardSpot(m_CounterInRow, m_IndexColumn - stepLeft).Sign == m_CoinSign)
+                if (GetBoardSpot(m_CounterInRow, m_IndexColumn - stepLeft) == null)
+                {
+                    continue;
+                }
+                else if (GetBoardSpot(m_CounterInRow, m_IndexColumn - stepLeft).Sign == m_CoinSign)
                 {
                     m_CounterInRow++;
                 }
@@ -183,7 +187,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
 
             for (int stepUp = 0; stepUp < 3; stepUp++)
             {
-                if (GetBoardSpot(m_IndexRow + stepUp, m_IndexColumn).Sign == m_CoinSign)
+                if (GetBoardSpot(m_IndexRow + stepUp, m_IndexColumn) == null)
+                {
+                    continue;
+                }
+                else if (GetBoardSpot(m_IndexRow + stepUp, m_IndexColumn).Sign == m_CoinSign)
                 {
                     m_CounterInColumn++;
                 }
@@ -194,7 +202,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             }
             for (int stepDown = 0; stepDown < 3; stepDown++)
             {
-                if (GetBoardSpot(m_IndexRow + stepDown, m_IndexColumn).Sign == m_CoinSign)
+                if (GetBoardSpot(m_IndexRow + stepDown, m_IndexColumn) == null)
+                {
+                    continue;
+                }
+                else if (GetBoardSpot(m_IndexRow + stepDown, m_IndexColumn).Sign == m_CoinSign)
                 {
                     m_CounterInColumn++;
                 }
@@ -220,7 +232,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
 
             for (int stepDiagonal = 0; stepDiagonal < 3; stepDiagonal++)
             {
-                if (GetBoardSpot(m_IndexRow + stepDiagonal, m_IndexColumn + stepDiagonal).Sign == m_CoinSign)
+                if (GetBoardSpot(m_IndexRow + stepDiagonal, m_IndexColumn + stepDiagonal) == null)
+                {
+                    continue;
+                }
+                else if (GetBoardSpot(m_IndexRow + stepDiagonal, m_IndexColumn + stepDiagonal).Sign == m_CoinSign)
                 {
                     m_CounterInDiagonalA++;
                 }
@@ -231,7 +247,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             }
             for (int stepDiagonal = 0; stepDiagonal < 3; stepDiagonal++)
             {
-                if (GetBoardSpot(m_IndexRow - stepDiagonal, m_IndexColumn - stepDiagonal).Sign == m_CoinSign)
+                if (GetBoardSpot(m_IndexRow - stepDiagonal, m_IndexColumn - stepDiagonal) == null)
+                {
+                    continue;
+                }
+                else if (GetBoardSpot(m_IndexRow - stepDiagonal, m_IndexColumn - stepDiagonal).Sign == m_CoinSign)
                 {
                     m_CounterInDiagonalA++;
                 }
@@ -257,6 +277,10 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
 
             for (int stepDiagonal = 0; stepDiagonal < 3; stepDiagonal++)
             {
+                if (GetBoardSpot(m_IndexRow + stepDiagonal, m_IndexColumn - stepDiagonal) == null)
+                {
+                    continue;
+                }
                 if (GetBoardSpot(m_IndexRow + stepDiagonal, m_IndexColumn - stepDiagonal).Sign == m_CoinSign)
                 {
                     m_CounterInDiagonalB++;
@@ -268,7 +292,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             }
             for (int stepDiagonal = 0; stepDiagonal < 3; stepDiagonal++)
             {
-                if (GetBoardSpot(m_IndexRow - stepDiagonal, m_IndexColumn + stepDiagonal).Sign == m_CoinSign)
+                if (GetBoardSpot(m_IndexRow - stepDiagonal, m_IndexColumn - stepDiagonal) == null)
+                {
+                    continue;
+                }
+                if (GetBoardSpot(m_IndexRow - stepDiagonal, m_IndexColumn - stepDiagonal).Sign == m_CoinSign)
                 {
                     m_CounterInDiagonalB++;
                 }
