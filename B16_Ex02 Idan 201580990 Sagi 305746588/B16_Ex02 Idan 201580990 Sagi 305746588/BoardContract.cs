@@ -17,6 +17,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         public void SetBoardSpot(int i_Row, int i_coluumn, Coin i_coin);
         public bool IsColumnFull(int i_column);
         public bool IsBingo();
+        public void InsertCoin();
 
     }
 }
