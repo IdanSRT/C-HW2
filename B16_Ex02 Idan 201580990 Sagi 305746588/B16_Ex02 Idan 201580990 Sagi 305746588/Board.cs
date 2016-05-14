@@ -30,7 +30,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
 
         public void SetBoardSpot(int i_Row, int i_Column, char i_value)
         {
-            m_Board[i_Row, i_Column] = i_value;
+            m_Board[i_Row][i_Column] = i_value;
         }
 
         public Coin GetBoardSpot(int i_Row, int i_Column)

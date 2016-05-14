@@ -27,7 +27,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
            new GameMenager(i_GameBoard, i_FirstPlayerName, "Computer");
         }
 
-        // 
+        // Starts the New Game with the correct consractor
         public static GameMenager StartNewGame(int i_Rows, int i_Columns, int i_NumOfPlayers) 
         {
             Board GameBoard = new Board(i_Rows, i_Columns);
