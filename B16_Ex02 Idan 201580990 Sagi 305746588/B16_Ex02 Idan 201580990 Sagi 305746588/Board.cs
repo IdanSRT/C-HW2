@@ -32,6 +32,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         public void SetBoardSpot(int i_Row, int i_Column, Coin i_Coin)
         {
             m_Board[i_Row][i_Column] = i_Coin;
+
         }
         
         //get the state of the spot in the board
