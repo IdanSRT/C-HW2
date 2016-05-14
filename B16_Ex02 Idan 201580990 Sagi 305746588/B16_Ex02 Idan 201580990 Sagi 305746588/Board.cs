@@ -16,7 +16,6 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         int m_Columns;
 
 
-
         //new board with the input size
         public Board(int i_Rows, int i_Columns)
         {

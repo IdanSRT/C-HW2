@@ -24,7 +24,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             m_FirstPlayer = new Player(i_FirstPlayerName, false, (eSign) 1);
             m_SecondPlayer = new Player(i_SecondPlayerName, false, (eSign) 2);
             m_RowRange = m_GameBoard.Row;
-            m_ColumnRange = m_GameBoard.Column;
+            m_ColumnRange.Column;
         }
 
         // Constractor for one player
