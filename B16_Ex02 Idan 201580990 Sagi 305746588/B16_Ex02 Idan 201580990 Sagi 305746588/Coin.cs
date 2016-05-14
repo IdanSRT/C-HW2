@@ -6,24 +6,26 @@ using System.Threading.Tasks;
 
 namespace B16_Ex02_Idan_201580990_Sagi_305746588
 {
-    public enum ePlayer
-    {
-        O,
-        X
-    }
+
 
     class Coin
     {
-        private ePlayer m_ePlayer;
+        private eSign m_Sign;
         private int m_CoinRow;
         private int m_CoinColumn;
 
-        public Coin(ePlayer i_Player, int i_Row, int i_Column)
+        public Coin(eSign i_Sign, int i_Row, int i_Column)
         {
             m_CoinColumn = i_Column;
             m_CoinRow = i_Row;
-            m_ePlayer = i_Player;
+            m_Sign = i_Sign;
         }
+
+        public override string ToString()
+        {
+            
+            return m_Sign.ToString();
+        } 
     }
     
 }
