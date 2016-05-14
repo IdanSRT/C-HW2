@@ -32,12 +32,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         {
             m_Board[i_Row, i_Column] = i_value;
         }
-        /// <summary>
-        /// hii
-        /// </summary>
-        /// <param name="i_Row"></param>
-        /// <param name="i_Column"></param>
-        /// <returns></returns>
+
         public char getBoardSpot(int i_Row, int i_Column)
         {
             return m_Board[i_Row, i_Column];
@@ -45,13 +40,47 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
 
         public void printBoard()
         {
-            for (int row = 0; row < m_Rows; row++)
+            for (int columnIndex = 1; columnIndex < m_Columns; columnIndex++)
+            {
+                Console.Write("  " + columnIndex + "  ");
+            }
+
+            for (int row = 0; row < m_Rows + 1; row++)
             {
                 for (int column = 0; column < m_Columns; column++)
                 {
-                    Console.Write(getBoardSpot(row, column) + " ");
+                    Console.Write("| " + getBoardSpot(row, column) + " ");
+                }
+                Console.Write("|\n");
+                for (int boundary = 0; boundary < m_Columns * 4; boundary++)
+                {
+                    Console.Write("=");
                 }
                 Console.Write("\n");
+            }
+        }
+
+        public bool isColumnFull(int i_Row)
+        {
+            if (getBoardSpot(i_Row - 1,0) == null)
+            {
+                return false;
+            }
+            return true;
+        }
+        
+        public bool insertCoin(int i_Column)
+        {
+            if (isColumnFull(i_Column) == true)
+            {
+                return false;
+            }
+            for (int rowInColumn = m_Rows; rowInColumn > 1; rowInColumn--)
+            {
+                if (getBoardSpot(rowInColumn , i_Column) == null)
+                {
+                    
+                }
             }
         }
     }
