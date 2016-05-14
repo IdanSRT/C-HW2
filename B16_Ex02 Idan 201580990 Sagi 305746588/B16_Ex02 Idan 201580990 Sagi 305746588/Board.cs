@@ -32,7 +32,12 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         {
             m_Board[i_Row, i_Column] = i_value;
         }
-
+        /// <summary>
+        /// hii
+        /// </summary>
+        /// <param name="i_Row"></param>
+        /// <param name="i_Column"></param>
+        /// <returns></returns>
         public char getBoardSpot(int i_Row, int i_Column)
         {
             return m_Board[i_Row, i_Column];
