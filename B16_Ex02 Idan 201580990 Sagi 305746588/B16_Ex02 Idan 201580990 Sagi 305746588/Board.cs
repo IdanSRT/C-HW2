@@ -15,6 +15,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         int m_Rows;
         int m_Columns;
         int m_CoinCounter;
+        bool m_BoardFull;
 
         //new board with the input size
         public Board(int i_Rows, int i_Columns)
@@ -54,7 +55,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         //print the board to the console
         public void PrintBoard()
         {
-            Coin m_CoinTemp;
+            Coin CoinTemp;
             Console.Write(" ");
 
             for (int columnIndex = 1; columnIndex < m_Columns + 1; columnIndex++)
@@ -73,7 +74,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     }
                     else
                     {
-                        m_CoinTemp = GetBoardSpot(row, column);                
+                        CoinTemp = GetBoardSpot(row, column);                
                         Console.Write("| " + char.Parse(GetBoardSpot(row, column).Sign.ToString()) + " ");
                     }
                    
@@ -105,13 +106,14 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                 return null;
             }
 
-            for (int rowInColumn = m_Rows - 1; rowInColumn >= 0 ||; rowInColumn--)
+            for (int rowInColumn = m_Rows - 1; rowInColumn >= 0 ; rowInColumn--)
             {
                 if (GetBoardSpot(rowInColumn, i_Column) == null)
                 {
-                    Coin m_Coin = new Coin(i_Player.Sign, rowInColumn, i_Column);
-                    SetBoardSpot(rowInColumn, i_Column, m_Coin);
-                    return m_Coin;
+                    Coin coin = new Coin(i_Player.Sign, rowInColumn, i_Column);
+                    SetBoardSpot(rowInColumn, i_Column, coin);
+                    m_CoinCounter++;
+                    return coin;
                 }
             }
             return null;
@@ -120,8 +122,8 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         //check if there is a 4 in a row
         public bool IsBingo(Coin i_Coin)
         {
-            int m_IndexRow = i_Coin.m_CoinRow;
-            int m_IndexColumn = i_Coin.m_CoinColumn;
+            int IndexRow = i_Coin.m_CoinRow;
+            int IndexColumn = i_Coin.m_CoinColumn;
             if (IsBingoRow(i_Coin)
                 || IsBingoColumn(i_Coin)
                 || IsBingoDiagonalA(i_Coin)
@@ -135,42 +137,42 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         //check if bingo in a row
         public bool IsBingoRow(Coin i_Coin)
         {
-            int m_IndexRow = i_Coin.m_CoinRow;
-            int m_IndexColumn = i_Coin.m_CoinColumn;
-            eSign m_CoinSign = i_Coin.Sign;
-            int m_CounterInRow = 0;
+            int IndexRow = i_Coin.m_CoinRow;
+            int IndexColumn = i_Coin.m_CoinColumn;
+            eSign CoinSign = i_Coin.Sign;
+            int CounterInRow = 0;
 
-            for (int stepRight = 0; stepRight < 3 || ((m_IndexColumn + stepRight) < m_Columns); stepRight++)
+            for (int stepRight = 0; stepRight < 3 || ((IndexColumn + stepRight) < m_Columns); stepRight++)
             {
-                if (GetBoardSpot(m_CounterInRow, m_IndexColumn + stepRight) == null)
+                if (GetBoardSpot(CounterInRow, IndexColumn + stepRight) == null)
                 {
                     continue;
                 }
-                else if (GetBoardSpot(m_CounterInRow, m_IndexColumn + stepRight).Sign == m_CoinSign)
+                else if (GetBoardSpot(CounterInRow, IndexColumn + stepRight).Sign == CoinSign)
                 {
-                    m_CounterInRow++;
+                    CounterInRow++;
                 }
                 else
                 {
                     break;
                 }
             }
-            for (int stepLeft = 0; stepLeft < 3 || ((m_IndexColumn - stepLeft) >= 0); stepLeft++)
+            for (int stepLeft = 0; stepLeft < 3 || ((IndexColumn - stepLeft) > 1); stepLeft++)
             {
-                if (GetBoardSpot(m_CounterInRow, m_IndexColumn - stepLeft) == null)
+                if (GetBoardSpot(CounterInRow, IndexColumn - stepLeft) == null)
                 {
                     continue;
                 }
-                else if (GetBoardSpot(m_CounterInRow, m_IndexColumn - stepLeft).Sign == m_CoinSign)
+                else if (GetBoardSpot(CounterInRow, IndexColumn - stepLeft).Sign == CoinSign)
                 {
-                    m_CounterInRow++;
+                    CounterInRow++;
                 }
                 else
                 {
                     break;
                 }
             }
-            if (m_CounterInRow >= 4)
+            if (CounterInRow >= 4)
             {
                 return true;
             }
@@ -180,138 +182,148 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         //check if bingo in a column
         public bool IsBingoColumn(Coin i_Coin)
         {
-            int m_IndexRow = i_Coin.m_CoinRow;
-            int m_IndexColumn = i_Coin.m_CoinColumn;
-            eSign m_CoinSign = i_Coin.Sign;
-            int m_CounterInColumn = 0;
+            int IndexRow = i_Coin.m_CoinRow;
+            int IndexColumn = i_Coin.m_CoinColumn;
+            eSign CoinSign = i_Coin.Sign;
+            int CounterInColumn = 0;
 
-            for (int stepUp = 0; stepUp < 3 || ((m_IndexRow + stepUp) > m_Rows); stepUp++)
+            for (int stepUp = 0; stepUp < 3 || ((IndexRow + stepUp) > m_Rows); stepUp++)
             {
-                if (GetBoardSpot(m_IndexRow + stepUp, m_IndexColumn) == null)
+                if (GetBoardSpot(IndexRow + stepUp, IndexColumn) == null)
                 {
                     continue;
                 }
-                else if (GetBoardSpot(m_IndexRow + stepUp, m_IndexColumn).Sign == m_CoinSign)
+                else if (GetBoardSpot(IndexRow + stepUp, IndexColumn).Sign == CoinSign)
                 {
-                    m_CounterInColumn++;
+                    CounterInColumn++;
                 }
                 else
                 {
                     break;
                 }
             }
-            for (int stepDown = 0; stepDown < 3 || ((m_IndexRow + stepDown) <= 0); stepDown++)
+            for (int stepDown = 0; stepDown < 3 || ((IndexRow + stepDown) > 1); stepDown++)
             {
-                if (GetBoardSpot(m_IndexRow + stepDown, m_IndexColumn) == null)
+                if (GetBoardSpot( IndexRow + stepDown,  IndexColumn) == null)
                 {
                     continue;
                 }
-                else if (GetBoardSpot(m_IndexRow + stepDown, m_IndexColumn).Sign == m_CoinSign)
+                else if (GetBoardSpot( IndexRow + stepDown,  IndexColumn).Sign ==  CoinSign)
                 {
-                    m_CounterInColumn++;
+                     CounterInColumn++;
                 }
                 else
                 {
                     break;
                 }
             }
-            if (m_CounterInColumn >= 4)
+            if ( CounterInColumn >= 4)
             {
                 return true;
             }
             return false;
         }
 
-        // check if bingo in a diagonal /
+        //check if bingo in a diagonal /
         public bool IsBingoDiagonalA(Coin i_Coin)
         {
-            int m_IndexRow = i_Coin.m_CoinRow;
-            int m_IndexColumn = i_Coin.m_CoinColumn;
-            eSign m_CoinSign = i_Coin.Sign;
-            int m_CounterInDiagonalA = 0;
+            int  IndexRow = i_Coin.m_CoinRow;
+            int  IndexColumn = i_Coin.m_CoinColumn;
+            eSign  CoinSign = i_Coin.Sign;
+            int  CounterInDiagonalA = 0;
 
-            for (int stepDiagonal = 0; stepDiagonal < 3 || ((m_IndexRow + stepDiagonal) > m_Rows) || ((m_IndexColumn + stepDiagonal) > m_Columns); stepDiagonal++)
+            for (int stepDiagonal = 0; stepDiagonal < 3 || (( IndexRow + stepDiagonal) > m_Rows) || (( IndexColumn + stepDiagonal) > m_Columns); stepDiagonal++)
             {
-                if (GetBoardSpot(m_IndexRow + stepDiagonal, m_IndexColumn + stepDiagonal) == null)
+                if (GetBoardSpot( IndexRow + stepDiagonal,  IndexColumn + stepDiagonal) == null)
                 {
                     continue;
                 }
-                else if (GetBoardSpot(m_IndexRow + stepDiagonal, m_IndexColumn + stepDiagonal).Sign == m_CoinSign)
+                else if (GetBoardSpot( IndexRow + stepDiagonal,  IndexColumn + stepDiagonal).Sign ==  CoinSign)
                 {
-                    m_CounterInDiagonalA++;
+                     CounterInDiagonalA++;
                 }
                 else
                 {
                     break;
                 }
             }
-            for (int stepDiagonal = 0; stepDiagonal < 3 || ((m_IndexRow - stepDiagonal) <= 0) || ((m_IndexColumn - stepDiagonal) <= 0); stepDiagonal++)
+            for (int stepDiagonal = 0; stepDiagonal < 3 || (( IndexRow - stepDiagonal) > 1) || (( IndexColumn - stepDiagonal) <= 0); stepDiagonal++)
             {
-                if (GetBoardSpot(m_IndexRow - stepDiagonal, m_IndexColumn - stepDiagonal) == null)
+                if (GetBoardSpot( IndexRow - stepDiagonal,  IndexColumn - stepDiagonal) == null)
                 {
                     continue;
                 }
-                else if (GetBoardSpot(m_IndexRow - stepDiagonal, m_IndexColumn - stepDiagonal).Sign == m_CoinSign)
+                else if (GetBoardSpot( IndexRow - stepDiagonal,  IndexColumn - stepDiagonal).Sign ==  CoinSign)
                 {
-                    m_CounterInDiagonalA++;
+                     CounterInDiagonalA++;
                 }
                 else
                 {
                     break;
                 }
             }
-            if (m_CounterInDiagonalA >= 4)
+            if ( CounterInDiagonalA >= 4)
             {
                 return true;
             }
             return false;
         }
 
-        //cheick if bingo in a diagonal \
+        //check if bingo in a diagonal \
         public bool IsBingoDiagonalB(Coin i_Coin)
         {
-            int m_IndexRow = i_Coin.m_CoinRow;
-            int m_IndexColumn = i_Coin.m_CoinColumn;
-            eSign m_CoinSign = i_Coin.Sign;
-            int m_CounterInDiagonalB = 0;
+            int  IndexRow = i_Coin.m_CoinRow;
+            int  IndexColumn = i_Coin.m_CoinColumn;
+            eSign  CoinSign = i_Coin.Sign;
+            int  CounterInDiagonalB = 0;
 
-            for (int stepDiagonal = 0; stepDiagonal < 3 || ((m_IndexRow + stepDiagonal) > m_Rows) || ((m_IndexColumn - stepDiagonal) <= 0); stepDiagonal++)
+            for (int stepDiagonal = 0; stepDiagonal < 3 || (( IndexRow + stepDiagonal) > m_Rows) || (( IndexColumn - stepDiagonal) <= 0); stepDiagonal++)
             {
-                if (GetBoardSpot(m_IndexRow + stepDiagonal, m_IndexColumn - stepDiagonal) == null)
+                if (GetBoardSpot( IndexRow + stepDiagonal,  IndexColumn - stepDiagonal) == null)
                 {
                     continue;
                 }
-                if (GetBoardSpot(m_IndexRow + stepDiagonal, m_IndexColumn - stepDiagonal).Sign == m_CoinSign)
+                if (GetBoardSpot( IndexRow + stepDiagonal,  IndexColumn - stepDiagonal).Sign ==  CoinSign)
                 {
-                    m_CounterInDiagonalB++;
+                     CounterInDiagonalB++;
                 }
                 else
                 {
                     break;
                 }
             }
-            for (int stepDiagonal = 0; stepDiagonal < 3 || ((m_IndexRow - stepDiagonal) <= 0) || ((m_IndexColumn + stepDiagonal) > m_Columns); stepDiagonal++)
+            for (int stepDiagonal = 0; stepDiagonal < 3 || (( IndexRow - stepDiagonal) > 1) || (( IndexColumn + stepDiagonal) > m_Columns); stepDiagonal++)
             {
-                if (GetBoardSpot(m_IndexRow - stepDiagonal, m_IndexColumn + stepDiagonal) == null)
+                if (GetBoardSpot( IndexRow - stepDiagonal,  IndexColumn + stepDiagonal) == null)
                 {
                     continue;
                 }
-                if (GetBoardSpot(m_IndexRow - stepDiagonal, m_IndexColumn + stepDiagonal).Sign == m_CoinSign)
+                if (GetBoardSpot( IndexRow - stepDiagonal,  IndexColumn + stepDiagonal).Sign ==  CoinSign)
                 {
-                    m_CounterInDiagonalB++;
+                     CounterInDiagonalB++;
                 }
                 else
                 {
                     break;
                 }
             }
-            if (m_CounterInDiagonalB >= 4)
+            if ( CounterInDiagonalB >= 4)
             {
                 return true;
             }
             return false;
         }
 
+        //check if board is full
+        public bool IsBoardFull()
+        {
+            if (m_CoinCounter == m_Columns * m_Rows)
+            {
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }
 
