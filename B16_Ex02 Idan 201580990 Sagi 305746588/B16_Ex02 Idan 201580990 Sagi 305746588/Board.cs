@@ -42,7 +42,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         //set the spot in the board 
         public void SetBoardSpot(int i_Row, int i_Column, Coin i_Coin)
         {
-            m_Board[i_Row,i_Column] = i_Coin;
+            m_Board[i_Row, i_Column] = i_Coin;
 
         }
 
@@ -64,7 +64,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             }
             Console.Write("\n");
 
-            for (int row = 0; row < m_Rows ; row++)
+            for (int row = 0; row < m_Rows; row++)
             {
                 for (int column = 0; column < m_Columns; column++)
                 {
@@ -74,10 +74,10 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     }
                     else
                     {
-                        CoinTemp = GetBoardSpot(row, column);                
+                        CoinTemp = GetBoardSpot(row, column);
                         Console.Write("| " + char.Parse(GetBoardSpot(row, column).Sign.ToString()) + " ");
                     }
-                   
+
                 }
                 Console.Write("|\n");
                 for (int boundary = 0; boundary < m_Columns * 4; boundary++)
@@ -106,7 +106,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                 return null;
             }
 
-            for (int rowInColumn = m_Rows - 1; rowInColumn >= 0 ; rowInColumn--)
+            for (int rowInColumn = m_Rows - 1; rowInColumn >= 0; rowInColumn--)
             {
                 if (GetBoardSpot(rowInColumn, i_Column) == null)
                 {
@@ -142,13 +142,17 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             eSign CoinSign = i_Coin.Sign;
             int CounterInRow = 0;
 
-            for (int stepRight = 0; stepRight < 3 || ((IndexColumn + stepRight) < m_Columns); stepRight++)
+            for (int stepRight = 1; stepRight < 3 ; stepRight++)
             {
-                if (GetBoardSpot(CounterInRow, IndexColumn + stepRight) == null)
+                if ((IndexColumn + stepRight) == m_Columns)
+                {
+                    break;
+                }
+                    if ((GetBoardSpot(IndexRow, IndexColumn + stepRight) == null))
                 {
                     continue;
                 }
-                else if (GetBoardSpot(CounterInRow, IndexColumn + stepRight).Sign == CoinSign)
+                else if (GetBoardSpot(IndexRow, IndexColumn + stepRight).Sign == CoinSign)
                 {
                     CounterInRow++;
                 }
@@ -157,13 +161,17 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     break;
                 }
             }
-            for (int stepLeft = 0; stepLeft < 3 || ((IndexColumn - stepLeft) > 1); stepLeft++)
+            for (int stepLeft = 1; stepLeft < 3; stepLeft++)
             {
-                if (GetBoardSpot(CounterInRow, IndexColumn - stepLeft) == null)
+                if ((IndexColumn - stepLeft) == -1)
+                {
+                    break;
+                }
+                if (GetBoardSpot(IndexRow, IndexColumn - stepLeft) == null)
                 {
                     continue;
                 }
-                else if (GetBoardSpot(CounterInRow, IndexColumn - stepLeft).Sign == CoinSign)
+                else if (GetBoardSpot(IndexRow, IndexColumn - stepLeft).Sign == CoinSign)
                 {
                     CounterInRow++;
                 }
@@ -178,7 +186,6 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             }
             return false;
         }
-
         //check if bingo in a column
         public bool IsBingoColumn(Coin i_Coin)
         {
@@ -187,13 +194,17 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             eSign CoinSign = i_Coin.Sign;
             int CounterInColumn = 0;
 
-            for (int stepUp = 0; stepUp < 3 || ((IndexRow + stepUp) > m_Rows); stepUp++)
+            for (int stepUp = 1; stepUp < 3; stepUp++)
             {
-                if (GetBoardSpot(IndexRow + stepUp, IndexColumn) == null)
+                if ((IndexRow - stepUp) == -1)
+                {
+                    break;
+                }
+                if (GetBoardSpot(IndexRow - stepUp, IndexColumn) == null)
                 {
                     continue;
                 }
-                else if (GetBoardSpot(IndexRow + stepUp, IndexColumn).Sign == CoinSign)
+                else if (GetBoardSpot(IndexRow - stepUp, IndexColumn).Sign == CoinSign)
                 {
                     CounterInColumn++;
                 }
@@ -202,8 +213,12 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     break;
                 }
             }
-            for (int stepDown = 0; stepDown < 3 || ((IndexRow + stepDown) > 1); stepDown++)
+            for (int stepDown = 1; stepDown < 3 ; stepDown++)
             {
+                if ((IndexRow + stepDown) == m_Rows)
+                {
+                    break;
+                }
                 if (GetBoardSpot( IndexRow + stepDown,  IndexColumn) == null)
                 {
                     continue;
@@ -232,13 +247,17 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             eSign  CoinSign = i_Coin.Sign;
             int  CounterInDiagonalA = 0;
 
-            for (int stepDiagonal = 0; stepDiagonal < 3 || (( IndexRow + stepDiagonal) > m_Rows) || (( IndexColumn + stepDiagonal) > m_Columns); stepDiagonal++)
+            for (int stepDiagonalUpRight = 1; stepDiagonalUpRight < 3; stepDiagonalUpRight++)
             {
-                if (GetBoardSpot( IndexRow + stepDiagonal,  IndexColumn + stepDiagonal) == null)
+                if (((IndexRow - stepDiagonalUpRight) == -1) || ((IndexColumn + stepDiagonalUpRight) == m_Columns))
+                {
+                    break;
+                }
+                if (GetBoardSpot( IndexRow - stepDiagonalUpRight,  IndexColumn + stepDiagonalUpRight) == null)
                 {
                     continue;
                 }
-                else if (GetBoardSpot( IndexRow + stepDiagonal,  IndexColumn + stepDiagonal).Sign ==  CoinSign)
+                else if (GetBoardSpot( IndexRow - stepDiagonalUpRight,  IndexColumn + stepDiagonalUpRight).Sign ==  CoinSign)
                 {
                      CounterInDiagonalA++;
                 }
@@ -247,13 +266,17 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     break;
                 }
             }
-            for (int stepDiagonal = 0; stepDiagonal < 3 || (( IndexRow - stepDiagonal) > 1) || (( IndexColumn - stepDiagonal) <= 0); stepDiagonal++)
+            for (int stepDiagonalDownLeft = 1; stepDiagonalDownLeft < 3; stepDiagonalDownLeft++)
             {
-                if (GetBoardSpot( IndexRow - stepDiagonal,  IndexColumn - stepDiagonal) == null)
+                if (((IndexRow + stepDiagonalDownLeft) == m_Rows) || ((IndexColumn - stepDiagonalDownLeft) == -1))
+                {
+                    break;
+                }
+                if (GetBoardSpot( IndexRow + stepDiagonalDownLeft,  IndexColumn - stepDiagonalDownLeft) == null)
                 {
                     continue;
                 }
-                else if (GetBoardSpot( IndexRow - stepDiagonal,  IndexColumn - stepDiagonal).Sign ==  CoinSign)
+                else if (GetBoardSpot( IndexRow + stepDiagonalDownLeft,  IndexColumn - stepDiagonalDownLeft).Sign ==  CoinSign)
                 {
                      CounterInDiagonalA++;
                 }
@@ -277,13 +300,17 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             eSign  CoinSign = i_Coin.Sign;
             int  CounterInDiagonalB = 0;
 
-            for (int stepDiagonal = 0; stepDiagonal < 3 || (( IndexRow + stepDiagonal) > m_Rows) || (( IndexColumn - stepDiagonal) <= 0); stepDiagonal++)
+            for (int stepDiagonalUpLeft = 1; stepDiagonalUpLeft < 3; stepDiagonalUpLeft++)
             {
-                if (GetBoardSpot( IndexRow + stepDiagonal,  IndexColumn - stepDiagonal) == null)
+                if (((IndexRow - stepDiagonalUpLeft) == -1) || ((IndexColumn - stepDiagonalUpLeft) == -1))
+                {
+                    break;
+                }
+                if (GetBoardSpot( IndexRow - stepDiagonalUpLeft,  IndexColumn - stepDiagonalUpLeft) == null)
                 {
                     continue;
                 }
-                if (GetBoardSpot( IndexRow + stepDiagonal,  IndexColumn - stepDiagonal).Sign ==  CoinSign)
+                if (GetBoardSpot( IndexRow - stepDiagonalUpLeft,  IndexColumn - stepDiagonalUpLeft).Sign ==  CoinSign)
                 {
                      CounterInDiagonalB++;
                 }
@@ -292,13 +319,17 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     break;
                 }
             }
-            for (int stepDiagonal = 0; stepDiagonal < 3 || (( IndexRow - stepDiagonal) > 1) || (( IndexColumn + stepDiagonal) > m_Columns); stepDiagonal++)
+            for (int stepDiagonalDownRight = 1; stepDiagonalDownRight < 3; stepDiagonalDownRight++)
             {
-                if (GetBoardSpot( IndexRow - stepDiagonal,  IndexColumn + stepDiagonal) == null)
+                if (((IndexRow + stepDiagonalDownRight) == m_Rows) || ((IndexColumn + stepDiagonalDownRight) == m_Columns))
+                {
+                    break;
+                }
+                if (GetBoardSpot( IndexRow + stepDiagonalDownRight,  IndexColumn + stepDiagonalDownRight) == null)
                 {
                     continue;
                 }
-                if (GetBoardSpot( IndexRow - stepDiagonal,  IndexColumn + stepDiagonal).Sign ==  CoinSign)
+                if (GetBoardSpot( IndexRow + stepDiagonalDownRight,  IndexColumn + stepDiagonalDownRight).Sign ==  CoinSign)
                 {
                      CounterInDiagonalB++;
                 }
