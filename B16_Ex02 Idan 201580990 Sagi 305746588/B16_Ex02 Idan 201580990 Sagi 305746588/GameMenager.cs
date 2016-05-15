@@ -19,7 +19,6 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         // Constractor for two players
         public GameMenager(Board i_GameBoard, String i_FirstPlayerName, String i_SecondPlayerName)
         {
-
             m_GameBoard = i_GameBoard;
             m_FirstPlayer = new Player(i_FirstPlayerName, false, (eSign) 1);
             m_SecondPlayer = new Player(i_SecondPlayerName, false, (eSign) 2);

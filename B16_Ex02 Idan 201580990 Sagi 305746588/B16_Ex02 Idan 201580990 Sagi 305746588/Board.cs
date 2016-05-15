@@ -100,7 +100,10 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         }
 
         //insert a coin in the column or return false if full
-        public bool InsertCoin(int i_Column, Player i_Player)
+        public bool InsertCoin(int i_Column, Player i_Player) 
+        {
+            return null;
+        }
         public Coin InsertCoin(int i_Column, Player i_Player)
         {
             if (IsColumnFull(i_Column) == true)
