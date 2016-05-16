@@ -46,6 +46,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         // Get the state of the spot in the board
         public Coin GetBoardSpot(int i_Row, int i_Column)
         {
+
             return m_Board[i_Row, i_Column];
         }
 
