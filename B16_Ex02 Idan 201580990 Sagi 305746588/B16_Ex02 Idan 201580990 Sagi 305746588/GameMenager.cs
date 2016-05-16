@@ -9,15 +9,15 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
 {
     public class GameMenager
     {
-        Board m_GameBoard;
-        int m_RowRange;
-        int m_ColumnRange;
-        Player m_FirstPlayer;
-        Player m_SecondPlayer;
-        bool m_IsEnded;
+        private Board m_GameBoard;
+        private int m_RowRange;
+        private int m_ColumnRange;
+        private Player m_FirstPlayer;
+        private Player m_SecondPlayer;
+        private bool m_IsEnded;
 
         // Constractor for two players
-        public GameMenager(Board i_GameBoard, String i_FirstPlayerName, String i_SecondPlayerName)
+        public GameMenager(Board i_GameBoard, string i_FirstPlayerName, string i_SecondPlayerName)
         {
             m_GameBoard = i_GameBoard;
             m_FirstPlayer = new Player(i_FirstPlayerName, false, (eSign) 1);
@@ -58,6 +58,23 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return GameManager;
         }
 
+        // Helper to read from the user the number of Players/Rows/Columns
+        public static int ChooseNumOf(string numToChoose, int startRange, int endRange)
+        {
+            System.Console.WriteLine("Please choose the number of " + numToChoose + ", between the range " + startRange + " to " + endRange + " (and then press 'enter'):");
+            string inputNumStr = Console.ReadLine();
+            int inputNumInt;
+            bool goodInput = int.TryParse(inputNumStr, out inputNumInt);
+            while (!goodInput || inputNumInt < startRange || inputNumInt > endRange)
+            {
+                Console.WriteLine("Input is not valid. \nPlease choose a number between the range " + startRange + " to " + endRange + ":");
+                inputNumStr = Console.ReadLine();
+                goodInput = int.TryParse(inputNumStr, out inputNumInt);
+            }
+
+            return inputNumInt;
+        }
+
         // IsEnded get and set
         public bool IsEnded
         {
@@ -74,6 +91,16 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             {
                 Console.WriteLine("Player " + currentPlayer.Name + ", Please choose column:");
                 string columnChooseStr = Console.ReadLine();
+
+                // if (currentPlayer.IsPC == false)
+                //{
+                //    string columnChooseStr = Console.ReadLine();
+                //}
+                //else
+                //{
+                //    string columnChooseStr = GuessColumn();
+
+                //}
                 int columnChooseInt;
                 bool goodInput = int.TryParse(columnChooseStr, out columnChooseInt);
 
@@ -123,23 +150,6 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             {
                 io_CurrentPlayer = m_FirstPlayer;
             }
-        }
-
-        // Helper to read from the user the number of Players/Rows/Columns
-        public static int ChooseNumOf(string numToChoose, int startRange, int endRange)
-        {
-            System.Console.WriteLine("Please choose the number of " + numToChoose + ", between the range " + startRange + " to " + endRange + " (and then press 'enter'):");
-            string inputNumStr = Console.ReadLine();
-            int inputNumInt;
-            bool goodInput = int.TryParse(inputNumStr, out inputNumInt);
-            while (!goodInput || inputNumInt < startRange || inputNumInt > endRange)
-            {
-                Console.WriteLine("Input is not valid. \nPlease choose a number between the range " + startRange + " to " + endRange +":");
-                inputNumStr = Console.ReadLine();
-                goodInput = int.TryParse(inputNumStr, out inputNumInt);
-            }
-
-            return inputNumInt;
         }
     }
 }

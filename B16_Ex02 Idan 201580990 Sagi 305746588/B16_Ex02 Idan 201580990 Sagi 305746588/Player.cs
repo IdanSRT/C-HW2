@@ -14,9 +14,9 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
 
     public class Player
     {
-        eSign m_PlayerSign;
-        bool m_IsPC;
-        string m_Name;
+        private eSign m_PlayerSign;
+        private bool m_IsPC;
+        private string m_Name;
 
         public Player(string i_Name, bool i_IsPC, eSign i_PlayerSign)
         {

@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace B16_Ex02_Idan_201580990_Sagi_305746588
 {
-
-    class Coin
+    internal class Coin
     {
-
         public eSign m_Sign;
         public int m_CoinRow;
         public int m_CoinColumn;
@@ -23,15 +21,13 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
 
         public eSign Sign
         {
-            set { m_Sign = value; }
             get { return m_Sign; }
+            set { m_Sign = value; }
         }
 
         public override string ToString()
         {
-            
             return m_Sign.ToString();
         } 
     }
-    
 }
