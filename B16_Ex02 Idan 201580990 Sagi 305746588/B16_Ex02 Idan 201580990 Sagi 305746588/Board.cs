@@ -86,13 +86,12 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                 Console.Write("\n");
             }
         }
-      
-       
+          
         // Check if the column is full
-        public bool IsColumnFull(int i_Row)
+        public bool IsColumnFull(int i_Column)
         {
             bool isFull = true;
-            if (GetBoardSpot(i_Row , 0) == null)
+            if (GetBoardSpot(0 , i_Column) == null)
             {
                 isFull = false;
             }
