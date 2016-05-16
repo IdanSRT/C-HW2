@@ -143,6 +143,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         public void PlayGame()
         {
             Player currentPlayer = m_FirstPlayer;
+            Ex02.ConsoleUtils.Screen.Clear();
             m_GameBoard.PrintBoard();
             eGameStatus gameStatus = eGameStatus.Play;
 
@@ -151,7 +152,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                 string columnChooseStr;
                 int columnChooseInt;
                 bool goodInput;
-                Console.WriteLine("Player " + currentPlayer.Name + ", Please choose column:");
+                Console.WriteLine("Press 'Q' to quit\nPlayer " + currentPlayer.Name + ", Please choose column:");
 
                 if (currentPlayer.IsPC == false)
                 {
@@ -241,7 +242,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             }
             else
             {
-                Console.WriteLine("Game Ended!\n Press 'enter' to exit");
+                Console.WriteLine("Game Ended!\nPress 'enter' to exit");
             }
         }   
 
