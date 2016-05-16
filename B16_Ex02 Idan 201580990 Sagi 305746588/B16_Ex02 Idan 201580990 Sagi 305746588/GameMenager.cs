@@ -110,7 +110,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                 {
                     if (m_GameBoard.IsColumnFull(columnChooseInt - 1))
                     {
-                        Console.WriteLine("Column " + columnChooseInt + "is full.\nPlease choose a different column:");
+                        Console.WriteLine("Column " + columnChooseInt + " is full.\nPlease choose a different column:");
                     }
                     else
                     {
@@ -137,7 +137,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
 
                 if (this.IsEnded)
                 {
-                    Console.WriteLine("Congratulations!/nPlayer" + currentPlayer + "wins!");
+                    Console.WriteLine("Congratulations!\nPlayer " + currentPlayer.Name + " wins!");
                     break;
                 }
 
