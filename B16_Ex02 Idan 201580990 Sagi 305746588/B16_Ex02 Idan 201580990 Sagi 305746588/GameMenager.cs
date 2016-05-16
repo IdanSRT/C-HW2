@@ -223,18 +223,24 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                         currentPlayer.Score++;
                         Console.WriteLine(m_FirstPlayer.Name + " Score: " + m_FirstPlayer.Score);
                         Console.WriteLine(m_SecondPlayer.Name + " Score: " + m_SecondPlayer.Score);
-                        this.ContinueNewGame(currentPlayer);
                         break;
 
-                case eGameStatus.Draw:
+                 default :
                         Console.WriteLine("This is a DRAW!");
-                        break;
-                default :
-                        Console.WriteLine("This is a DRAW!");
+                        Console.WriteLine(m_FirstPlayer.Name + " Score: " + m_FirstPlayer.Score);
+                        Console.WriteLine(m_SecondPlayer.Name + " Score: " + m_SecondPlayer.Score);
                         break;
             }
 
-
+            Console.WriteLine("Would you like to play another game?\nEnter C to continue playing or any other key to Quit.");
+            string inputStr = Console.ReadLine();
+            if (inputStr.ToLower() == "c"){
+                this.ContinueNewGame();
+            }
+            else
+            {
+                Console.WriteLine("Game Ended!\n Press 'enter' to exit");
+            }
         }   
 
         public Player SwitchPlayer(Player io_CurrentPlayer)
