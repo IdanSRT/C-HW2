@@ -1,0 +1,10 @@
+==========================Exercise Checking Report==========================
+Exercise No...........: 2
+First Student Details.: 201580990 - Idan Shuraty
+Second Student Details: 305746588 - Sagi Gleizer
+Delivery Date.........: 17 - May - 2016
+Delivered In Delay....: Yes
+Delay Reason..........: <Miluim>
+Visual Studio Version.: 2015
+Comments..............: Have Fun with our cool game!
+=======================End Exercise Checking Report=========================
