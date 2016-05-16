@@ -78,7 +78,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     }
                 }
 
-                Console.Write("|\n");
+                Console.Write("|\n=");
                 for (int boundary = 0; boundary < m_Columns * 4; boundary++)
                 {
                     Console.Write("=");
