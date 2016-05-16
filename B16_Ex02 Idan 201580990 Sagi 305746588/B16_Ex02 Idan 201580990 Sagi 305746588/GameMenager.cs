@@ -83,6 +83,21 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return inputNumInt;
         }
 
+        // Check if a chosen column is in range
+        public bool IsInRange(int i_ChosenColumn)
+        {
+            bool isInRange = false;
+            if (i_ChosenColumn <= this.m_ColumnRange && i_ChosenColumn > 0){
+                isInRange = true;
+            }
+            else
+            {
+                isInRange = false;
+            }
+
+            return isInRange;
+        }
+
         // IsEnded get and set
         public bool IsEnded
         {
@@ -96,7 +111,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             Player currentPlayer = m_FirstPlayer;
             m_GameBoard.PrintBoard();
 
-            while (!this.IsEnded)
+            while (this.IsEnded == false)
             {
                 string columnChooseStr;
                 int columnChooseInt;
@@ -115,9 +130,10 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     Console.WriteLine(columnChooseInt);
                 }
                 
-                while (!goodInput || columnChooseInt > m_ColumnRange || columnChooseInt < 1 || m_GameBoard.IsColumnFull(columnChooseInt - 1))
+                while (!goodInput || !IsInRange(columnChooseInt) || m_GameBoard.IsColumnFull(columnChooseInt - 1))
                 {
-                    if (columnChooseInt > 0 && columnChooseInt <= m_ColumnRange){
+                    if (IsInRange(columnChooseInt))
+                    {
 
                         if (m_GameBoard.IsColumnFull(columnChooseInt - 1))
                         {
