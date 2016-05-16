@@ -120,6 +120,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return lastCoinInserted;
         }
 
+        // Checks the game status
         public eGameStatus CheckGameStatus(Coin lastCoinInserted)
         {
             eGameStatus gameStatus;
@@ -136,6 +137,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             }
             return gameStatus;
         }
+
 
         // Play the Game
         public void PlayGame()
@@ -154,6 +156,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                 if (currentPlayer.IsPC == false)
                 {
                     columnChooseStr = Console.ReadLine();
+                    if (columnChooseStr == "Q"){
+                        currentPlayer = SwitchPlayer(currentPlayer);
+                        gameStatus = eGameStatus.Win;
+                        break;
+                    }
                     goodInput = int.TryParse(columnChooseStr, out columnChooseInt);
                 }
                 else
@@ -180,6 +187,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     if (currentPlayer.IsPC == false)
                     {
                         columnChooseStr = Console.ReadLine();
+                        if (columnChooseStr == "Q"){
+                            currentPlayer = SwitchPlayer(currentPlayer);
+                            gameStatus = eGameStatus.Win;
+                            goto Outer;
+                        }
                         goodInput = int.TryParse(columnChooseStr, out columnChooseInt);
                     }
                     else
@@ -192,11 +204,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
 
                 Coin lastCoinInserted = AddCoinToBoard(columnChooseInt, currentPlayer);
                 gameStatus = CheckGameStatus(lastCoinInserted);
-
+            Outer:
                 if (gameStatus == eGameStatus.Play)
                 {
                     // Switching the players
-                    currentPlayer = SeitchPlayer(currentPlayer);
+                    currentPlayer = SwitchPlayer(currentPlayer);
                     continue;
                 }
                 else 
@@ -205,11 +217,12 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     break;
                 }
             }
+
             switch(gameStatus)
             {
                 case eGameStatus.Win:
                         Console.WriteLine("Congratulations!\nPlayer " + currentPlayer.Name + " wins!"); 
-                        //ContiueNewGame(this, currentPlayer);
+                        GameMenager.ContinueNewGame(this, currentPlayer);
                         break;
 
                 case eGameStatus.Draw:
@@ -223,7 +236,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
 
         }   
 
-        public Player SeitchPlayer(Player io_CurrentPlayer)
+        public Player SwitchPlayer(Player io_CurrentPlayer)
         {
             if (io_CurrentPlayer.Equals(m_FirstPlayer))
             {
