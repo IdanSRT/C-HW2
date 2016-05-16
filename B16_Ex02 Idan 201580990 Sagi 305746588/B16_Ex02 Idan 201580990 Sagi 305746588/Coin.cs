@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace B16_Ex02_Idan_201580990_Sagi_305746588
 {
-    internal class Coin
+    public class Coin
     {
         public eSign m_Sign;
         public int m_CoinRow;

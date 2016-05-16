@@ -6,7 +6,7 @@ using System;
 
 namespace B16_Ex02_Idan_201580990_Sagi_305746588
 {
-    internal class Board
+    public class Board
     {
         // Board fields 
         Coin[,] m_Board;
@@ -86,8 +86,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                 Console.Write("\n");
             }
         }
-
-        // Check in the column is full
+        //////////////////////////////////////////
+        // This is the Bug!! 
+        //on firs iteration, when choose 1, it checks if the row is full but the get IndexOutOfBoundExceptio for calling GetSpot(-1, 0)
+        //////////////////////////////////
+        // Check if the column is full
         public bool IsColumnFull(int i_Row)
         {
             bool isFull = true;
