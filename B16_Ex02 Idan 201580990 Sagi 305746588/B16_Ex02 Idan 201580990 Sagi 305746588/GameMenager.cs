@@ -166,7 +166,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                 }
                 else
                 {
-                    columnChooseInt = currentPlayer.GuessNumber(m_ColumnRange);
+                    columnChooseInt = currentPlayer.PcBlock(m_ColumnRange, m_SecondPlayer.m_LastMove, m_SecondPlayer.m_OlderMove);
                     goodInput = true;
                     Console.WriteLine(columnChooseInt);
                 }
@@ -189,7 +189,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     {
                         columnChooseStr = Console.ReadLine();
                         if (columnChooseStr == "Q"){
-                            currentPlayer = SwitchPlayer(currentPlayer);
+                           currentPlayer = SwitchPlayer(currentPlayer);
                             gameStatus = eGameStatus.Win;
                             goto Outer;
                         }
@@ -197,12 +197,16 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     }
                     else
                     {
-                        columnChooseInt = currentPlayer.GuessNumber(m_ColumnRange);
+                        columnChooseInt = currentPlayer.PcBlock(m_ColumnRange, m_SecondPlayer.m_LastMove, m_SecondPlayer.m_OlderMove);
                         goodInput = true;
                         Console.WriteLine(columnChooseInt);
                     }
                 }
-
+                if (currentPlayer.IsPC == false)
+                {
+                    m_SecondPlayer.m_OlderMove = m_SecondPlayer.m_LastMove;
+                    m_SecondPlayer.m_LastMove = columnChooseInt;
+                }
                 Coin lastCoinInserted = AddCoinToBoard(columnChooseInt, currentPlayer);
                 gameStatus = CheckGameStatus(lastCoinInserted);
             Outer:
