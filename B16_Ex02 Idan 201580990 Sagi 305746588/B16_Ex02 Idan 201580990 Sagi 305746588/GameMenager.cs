@@ -108,7 +108,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                 
                 while (!goodInput || columnChooseInt > m_ColumnRange || columnChooseInt < 1 || m_GameBoard.IsColumnFull(columnChooseInt - 1))
                 {
-                    if (columnChooseInt > 0 || columnChooseInt <= m_ColumnRange){
+                    if (columnChooseInt > 0 && columnChooseInt <= m_ColumnRange){
 
                         if (m_GameBoard.IsColumnFull(columnChooseInt - 1))
                         {
