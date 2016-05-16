@@ -219,8 +219,11 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             switch(gameStatus)
             {
                 case eGameStatus.Win:
-                        Console.WriteLine("Congratulations!\nPlayer " + currentPlayer.Name + " wins!"); 
-                        GameMenager.ContinueNewGame(this, currentPlayer);
+                        Console.WriteLine("Congratulations!\nPlayer " + currentPlayer.Name + " wins!");
+                        currentPlayer.Score++;
+                        Console.WriteLine(m_FirstPlayer.Name + " Score: " + m_FirstPlayer.Score);
+                        Console.WriteLine(m_SecondPlayer.Name + " Score: " + m_SecondPlayer.Score);
+                        this.ContinueNewGame(currentPlayer);
                         break;
 
                 case eGameStatus.Draw:
