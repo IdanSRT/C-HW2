@@ -100,30 +100,30 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return isFull;
         }
 
-        ///////////////////////////////////
-        // Notice to have only One return!!
-        ///////////////////////////////////
-
-        // Insert a coin in the column or return false if full
+        // Insert a coin in the column and returning the coin or return null if the column full
         public Coin InsertCoin(int i_Column, Player i_Player)
         {
+            Coin InsertedCoinOrNull = null;
+
             if (IsColumnFull(i_Column) == true)
             {
-                return null;
+                InsertedCoinOrNull = null;
             }
-
-            for (int rowInColumn = m_Rows - 1; rowInColumn >= 0; rowInColumn--)
+            else
             {
-                if (GetBoardSpot(rowInColumn, i_Column) == null)
+                for (int rowInColumn = m_Rows - 1; rowInColumn >= 0; rowInColumn--)
                 {
-                    Coin coin = new Coin(i_Player.Sign, rowInColumn, i_Column);
-                    SetBoardSpot(rowInColumn, i_Column, coin);
-                    m_CoinCounter++;
-                    return coin;
+                    if (GetBoardSpot(rowInColumn, i_Column) == null)
+                    {
+                        Coin coin = new Coin(i_Player.Sign, rowInColumn, i_Column);
+                        SetBoardSpot(rowInColumn, i_Column, coin);
+                        m_CoinCounter++;
+                        InsertedCoinOrNull = coin;
+                        break;
+                    }
                 }
             }
-
-            return null;
+            return InsertedCoinOrNull;
         }
 
         // Check if there is a 4 in a row
