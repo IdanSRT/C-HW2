@@ -7,6 +7,12 @@ using B16_Ex02_Idan_201580990_Sagi_305746588;
 
 namespace B16_Ex02_Idan_201580990_Sagi_305746588
 {
+    public enum eGameStatus
+    {
+        Play,
+        Win,
+        Draw
+    }
     public class GameMenager
     {
         private Board m_GameBoard;
@@ -97,11 +103,38 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             set { m_IsEnded = value; }
         }
 
+        // Adding the coin of the current player to the chosen column
+        public Coin AddCoinToBoard(int i_ColumnChoosen, Player i_CurrentPlayer)
+        {
+            Coin lastCoinInserted = m_GameBoard.InsertCoin(i_ColumnChoosen - 1, i_CurrentPlayer);
+            Ex02.ConsoleUtils.Screen.Clear();
+            m_GameBoard.PrintBoard();
+            return lastCoinInserted;
+        }
+
+        public eGameStatus CheckGameStatus(Coin lastCoinInserted)
+        {
+            eGameStatus gameStatus;
+            if (m_GameBoard.IsBingo(lastCoinInserted))
+            {
+                gameStatus = eGameStatus.Win;
+            }
+            else if (m_GameBoard.IsBoardFull()){
+                gameStatus = eGameStatus.Draw;
+            }
+            else
+            {
+                gameStatus = eGameStatus.Play;
+            }
+            return gameStatus;
+        }
+
         // Play the Game
         public void PlayGame()
         {
             Player currentPlayer = m_FirstPlayer;
             m_GameBoard.PrintBoard();
+            eGameStatus gameStatus = eGameStatus.Play;
 
             while (this.IsEnded == false)
             {
@@ -126,7 +159,6 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                 {
                     if (IsInRange(columnChooseInt))
                     {
-
                         if (m_GameBoard.IsColumnFull(columnChooseInt - 1))
                         {
                             Console.WriteLine("Column " + columnChooseInt + " is full.\nPlease choose a different column:");
@@ -150,26 +182,38 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     }
                 }
 
-                Coin lastCoinInserted = m_GameBoard.InsertCoin(columnChooseInt - 1, currentPlayer);
-                Ex02.ConsoleUtils.Screen.Clear();
-                m_GameBoard.PrintBoard();
-                this.IsEnded = m_GameBoard.IsBingo(lastCoinInserted);
+                Coin lastCoinInserted = AddCoinToBoard(columnChooseInt, currentPlayer);
+                gameStatus = CheckGameStatus(lastCoinInserted);
 
-                if (this.IsEnded)
+                if (gameStatus == eGameStatus.Play)
                 {
-                    Console.WriteLine("Congratulations!\nPlayer " + currentPlayer.Name + " wins!");
+                    // Switching the players
+                    currentPlayer = SeitchPlayer(currentPlayer);
+                    continue;
+                }
+                else 
+                {
+                    this.IsEnded = true;
                     break;
                 }
-
-                else if (m_GameBoard.IsBoardFull())
-                {
-                    Console.WriteLine("This is a DRAW!");
-                }
-
-                 // Switching the players
-                currentPlayer = SeitchPlayer(currentPlayer);
             }
-        }
+            switch(gameStatus)
+            {
+                case eGameStatus.Win:
+                        Console.WriteLine("Congratulations!\nPlayer " + currentPlayer.Name + " wins!"); 
+                        //ContiueNewGame(this, currentPlayer);
+                        break;
+
+                case eGameStatus.Draw:
+                        Console.WriteLine("This is a DRAW!");
+                        break;
+                default :
+                        Console.WriteLine("This is a DRAW!");
+                        break;
+            }
+
+
+        }   
 
         public Player SeitchPlayer(Player io_CurrentPlayer)
         {
