@@ -17,6 +17,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         private eSign m_PlayerSign;
         private bool m_IsPC;
         private string m_Name;
+        private int m_Score;
 
         public Player(string i_Name, bool i_IsPC, eSign i_PlayerSign)
         {
@@ -29,6 +30,12 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         {
             get { return m_Name; }
             set { m_Name = value; }
+        }
+
+        public int Score
+        {
+            get { return m_Score; }
+            set { m_Score = value; }
         }
 
         public eSign Sign
