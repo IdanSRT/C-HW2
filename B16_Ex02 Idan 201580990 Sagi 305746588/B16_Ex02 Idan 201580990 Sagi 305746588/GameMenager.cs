@@ -20,8 +20,8 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         public GameMenager(Board i_GameBoard, string i_FirstPlayerName, string i_SecondPlayerName)
         {
             m_GameBoard = i_GameBoard;
-            m_FirstPlayer = new Player(i_FirstPlayerName, false, (eSign) 1);
-            m_SecondPlayer = new Player(i_SecondPlayerName, false, (eSign) 2);
+            m_FirstPlayer = new Player(i_FirstPlayerName, false, (eSign) 0);
+            m_SecondPlayer = new Player(i_SecondPlayerName, false, (eSign) 1);
             m_RowRange = m_GameBoard.Rows;
             m_ColumnRange = m_GameBoard.Columns;
             m_IsEnded = false;
@@ -90,19 +90,21 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             while (!this.IsEnded)
             {
                 Console.WriteLine("Player " + currentPlayer.Name + ", Please choose column:");
-                string columnChooseStr = Console.ReadLine();
-
-                // if (currentPlayer.IsPC == false)
-                //{
-                //    string columnChooseStr = Console.ReadLine();
-                //}
-                //else
-                //{
-                //    string columnChooseStr = GuessColumn();
-
-                //}
+                string columnChooseStr;
                 int columnChooseInt;
-                bool goodInput = int.TryParse(columnChooseStr, out columnChooseInt);
+                bool goodInput;
+
+                if (currentPlayer.IsPC == false)
+                {
+                    columnChooseStr = Console.ReadLine();
+                    goodInput = int.TryParse(columnChooseStr, out columnChooseInt);
+                }
+                else
+                {
+                    columnChooseInt = currentPlayer.GuessNumber(m_ColumnRange);
+                    goodInput = true;
+                    Console.WriteLine(columnChooseInt);
+                }
 
                 while (!goodInput || columnChooseInt > m_ColumnRange || columnChooseInt < 1)
                 {
@@ -115,8 +117,17 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                         Console.WriteLine("Input is not valid. \nPlease choose a column:");
                     }
 
-                    columnChooseStr = Console.ReadLine();
-                    goodInput = int.TryParse(columnChooseStr, out columnChooseInt);
+                    if (currentPlayer.IsPC == false)
+                    {
+                        columnChooseStr = Console.ReadLine();
+                        goodInput = int.TryParse(columnChooseStr, out columnChooseInt);
+                    }
+                    else
+                    {
+                        columnChooseInt = currentPlayer.GuessNumber(m_ColumnRange);
+                        goodInput = true;
+                        Console.WriteLine(columnChooseInt);
+                    }
                 }
 
                 Coin lastCoinInserted = m_GameBoard.InsertCoin(columnChooseInt - 1, currentPlayer);
@@ -136,13 +147,13 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                 //}
 
                 // Switching the players
-                SeitchPlayer(currentPlayer);
+                currentPlayer = SeitchPlayer(currentPlayer);
             }
         }
 
-        public void SeitchPlayer(Player io_CurrentPlayer)
+        public Player SeitchPlayer(Player io_CurrentPlayer)
         {
-            if (io_CurrentPlayer == m_FirstPlayer)
+            if (io_CurrentPlayer.Equals(m_FirstPlayer))
             {
                 io_CurrentPlayer = m_SecondPlayer;
             }
@@ -150,6 +161,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             {
                 io_CurrentPlayer = m_FirstPlayer;
             }
+            return io_CurrentPlayer;
         }
     }
 }

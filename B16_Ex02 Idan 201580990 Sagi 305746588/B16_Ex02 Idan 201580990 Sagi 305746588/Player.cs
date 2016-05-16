@@ -41,6 +41,13 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         {
             get { return m_IsPC; }
             set { m_IsPC = value; }
-        }   
+        }
+   
+        public int GuessNumber(int i_Columns)
+        {
+            Random rndNum = new Random();
+            int guessresult = rndNum.Next(1, i_Columns);
+            return guessresult;
+        }
     }
 }
