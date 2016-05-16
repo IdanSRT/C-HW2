@@ -64,12 +64,10 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return GameManager;
         }
 
-        public static GameMenager ContinueNewGame(GameMenager i_LastGame, Player i_LastGamerWinner)
+        public void ContinueNewGame(Player i_LastGamerWinner)
         {
-            GameMenager NewGameManager = i_LastGame;
-            NewGameManager.m_GameBoard = new Board(i_LastGame.m_GameBoard.Rows, i_LastGame.m_GameBoard.Columns);
+            this.m_GameBoard = new Board(this.m_GameBoard.Rows, this.m_GameBoard.Columns);
             i_LastGamerWinner.Score++;
-            return NewGameManager;
         }
 
         // Helper to read from the user the number of Players/Rows/Columns
