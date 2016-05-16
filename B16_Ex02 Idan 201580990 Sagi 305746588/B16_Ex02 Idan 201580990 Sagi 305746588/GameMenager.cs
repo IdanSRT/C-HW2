@@ -87,12 +87,13 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         {
             Player currentPlayer = m_FirstPlayer;
             m_GameBoard.PrintBoard();
+
             while (!this.IsEnded)
             {
-                Console.WriteLine("Player " + currentPlayer.Name + ", Please choose column:");
                 string columnChooseStr;
                 int columnChooseInt;
                 bool goodInput;
+                Console.WriteLine("Player " + currentPlayer.Name + ", Please choose column:");
 
                 if (currentPlayer.IsPC == false)
                 {
@@ -144,12 +145,12 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     break;
                 }
 
-                //else if (m_GameBoard.IsFull())
-                //{
-                //    Console.WriteLine("This is a tie!");
-                //}
+                else if (m_GameBoard.IsBoardFull())
+                {
+                    Console.WriteLine("This is a DRAW!");
+                }
 
-                // Switching the players
+                 // Switching the players
                 currentPlayer = SeitchPlayer(currentPlayer);
             }
         }
