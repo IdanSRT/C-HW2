@@ -105,10 +105,10 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     goodInput = true;
                     Console.WriteLine(columnChooseInt);
                 }
-
-                while (!goodInput || columnChooseInt > m_ColumnRange || columnChooseInt < 1)
+                
+                while (!goodInput || columnChooseInt > m_ColumnRange || columnChooseInt < 1 || m_GameBoard.IsColumnFull(columnChooseInt - 1))
                 {
-                    if (m_GameBoard.IsColumnFull(columnChooseInt))
+                    if (m_GameBoard.IsColumnFull(columnChooseInt - 1))
                     {
                         Console.WriteLine("Column " + columnChooseInt + "is full.\nPlease choose a different column:");
                     }
