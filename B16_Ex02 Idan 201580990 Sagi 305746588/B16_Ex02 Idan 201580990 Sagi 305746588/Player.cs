@@ -56,5 +56,26 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             int guessresult = rndNum.Next(1, i_Columns);
             return guessresult;
         }
+
+        public int PcBlock(int i_Columns, int i_PlayerLastMove, int i_PlayerOlderMove)
+        {
+            int ColumnPick = GuessNumber(i_Columns);
+            if( i_PlayerLastMove == i_PlayerOlderMove)
+            {
+                ColumnPick = i_PlayerLastMove;
+            }
+            if( Math.Abs( i_PlayerLastMove - i_PlayerOlderMove) == 1)
+            {
+                if (Math.Max(i_PlayerLastMove, i_PlayerOlderMove) + 1 < i_Columns)
+                {
+                    ColumnPick = Math.Max(i_PlayerLastMove, i_PlayerOlderMove) + 1;
+                }
+                else if (Math.Min(i_PlayerLastMove, i_PlayerOlderMove) - 1 > 1)
+                {
+                    ColumnPick = Math.Max(i_PlayerLastMove, i_PlayerOlderMove) - 1;
+                }
+            }
+            return ColumnPick;
+        }
     }
 }
