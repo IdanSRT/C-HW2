@@ -18,6 +18,8 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         private bool m_IsPC;
         private string m_Name;
         private int m_Score;
+        private int m_LastMove;
+        private int m_OlderMove;
 
         public Player(string i_Name, bool i_IsPC, eSign i_PlayerSign)
         {
