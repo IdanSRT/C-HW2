@@ -68,6 +68,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         {
             this.m_GameBoard = new Board(this.m_GameBoard.Rows, this.m_GameBoard.Columns);
             i_LastGamerWinner.Score++;
+            PlayGame();
         }
 
         // Helper to read from the user the number of Players/Rows/Columns
