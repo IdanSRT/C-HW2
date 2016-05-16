@@ -67,6 +67,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
         public void ContinueNewGame()
         {
             this.m_GameBoard = new Board(this.m_GameBoard.Rows, this.m_GameBoard.Columns);
+            Ex02.ConsoleUtils.Screen.Clear();
             PlayGame();
         }
 
