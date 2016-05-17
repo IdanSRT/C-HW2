@@ -59,16 +59,17 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
             return guessresult;
         }
 
-        public int PcBlock(int i_Columns, int i_PlayerLastMove, int i_PlayerOlderMove)
+        public int PcBlock(Board i_GameBoard, int i_PlayerLastMove, int i_PlayerOlderMove)
         {
-            int ColumnPick = GuessNumber(i_Columns);
+            int ColumnsRange = i_GameBoard.Columns;
+            int ColumnPick = GuessNumber(ColumnsRange);
             if( i_PlayerLastMove == i_PlayerOlderMove)
             {
                 ColumnPick = i_PlayerLastMove;
             }
             if( Math.Abs( i_PlayerLastMove - i_PlayerOlderMove) == 1)
             {
-                if (Math.Max(i_PlayerLastMove, i_PlayerOlderMove) + 1 < i_Columns)
+                if (Math.Max(i_PlayerLastMove, i_PlayerOlderMove) + 1 < ColumnsRange)
                 {
                     ColumnPick = Math.Max(i_PlayerLastMove, i_PlayerOlderMove) + 1;
                 }
@@ -77,6 +78,15 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     ColumnPick = Math.Max(i_PlayerLastMove, i_PlayerOlderMove) - 1;
                 }
             }
+            while (i_GameBoard.IsColumnFull(ColumnPick - 1))
+            {
+                if (ColumnPick == ColumnsRange)
+                {
+                    ColumnPick = 1;
+                }
+                ColumnPick++;
+            }
+
             return ColumnPick;
         }
 

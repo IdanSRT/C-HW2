@@ -166,7 +166,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                 }
                 else
                 {
-                    columnChooseInt = currentPlayer.PcBlock(m_ColumnRange, m_SecondPlayer.m_LastMove, m_SecondPlayer.m_OlderMove);
+                    columnChooseInt = currentPlayer.PcBlock(this.GameBoard , m_SecondPlayer.m_LastMove, m_SecondPlayer.m_OlderMove);
                     goodInput = true;
                     Console.WriteLine(columnChooseInt);
                 }
@@ -197,7 +197,7 @@ namespace B16_Ex02_Idan_201580990_Sagi_305746588
                     }
                     else
                     {
-                        columnChooseInt = currentPlayer.PcBlock(m_ColumnRange, m_SecondPlayer.m_LastMove, m_SecondPlayer.m_OlderMove);
+                        columnChooseInt = currentPlayer.PcBlock(this.GameBoard, m_SecondPlayer.m_LastMove, m_SecondPlayer.m_OlderMove);
                         goodInput = true;
                         Console.WriteLine(columnChooseInt);
                     }
